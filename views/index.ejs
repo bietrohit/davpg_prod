@@ -1,0 +1,202 @@
+<%- include('./partials/header') -%>
+  <div class="carousal">
+      <div class="carousel-wrapper">
+        <div class="carouselBox">
+          <img
+            class="carousel__photo initial"
+            src="/assets/img/bg1.jpg"
+          />
+          <img
+            class="carousel__photo"
+            src="/assets/img/bg2.jpg"
+          />
+          <img
+            class="carousel__photo"
+            src="/assets/img/bg3.jpg"
+          />
+          <img
+            class="carousel__photo"
+            src="/assets/img/bg4.jpg"
+          />
+          <img
+            class="carousel__photo"
+            src="/assets/img/bg1.jpg"
+          />
+          <div class="carousel__button--next"></div>
+          <div class="carousel__button--prev"></div>
+        </div>
+      </div>
+      <div class="extraInfo">
+        <div class="profileCard">
+          <div class="logo1" style="background-image: url('/assets/img/faculty.png');"></div>
+          <div class="info">
+            <div class="name">Shri Ranveer Shanker</div>
+            <div class="desg">Manager</div>
+          </div>
+        </div>
+        <div class="profileCard">
+          <div class="logo1" style="background-image: url('/assets/img/p4.jpg');"></div>
+          <div class="info">
+            <div class="name">Prof. Shail Pande</div>
+            <div class="desg">Principal</div>
+          </div>
+        </div>
+      </div>
+    </div>
+<div style="background-image: url('/assets/img/back.jpg');background-size:cover;background-attachment: fixed;">
+    <div style="padding:20px;color:white;"><h1 style="text-align: center;">NEWS & EVENTS </h1></div>
+    <div class="container3">
+      <div class="items">
+        <div class="items-head">
+          <p>Latest News</p>
+          <hr>
+        </div>
+        
+        <div class="items-body">
+          <marquee direction = "up" loop="infinite" scrollamount="2" onmouseover="this.stop();" onmouseout="this.start();">
+          <% for(var i=0; i<send.length; i++){ %>
+            <% if(send[i].Type == "News"){ %>
+              <% if(send[i].Link != ""){ %>
+                <a href="/docs/<%= send[i].Link %>" target="_blank" >
+              <% } %>
+                  <div class="items-body-content" style="text-decoration: none;color: blue; font-weight: 400;">
+                  <span><img src="/assets/img/new.gif"></img> <%= send[i].Title %></span>
+                </div>
+              </a>
+            <% } %>
+          <% } %>
+        </marquee>
+        </div>
+        <a href="/viewallnews" style="float: right;text-decoration: none;color: rgb(173, 46, 0);background-color: #f6931d;border-radius:30px">Read more</a>
+      </div>
+      <div class="items">
+        <div class="items-head">
+          <p>Events/News Coverage</p>
+          <hr>
+        </div>
+        <div class="items-body">
+          <marquee direction = "up" loop="infinite" scrollamount="2" onmouseover="this.stop();" onmouseout="this.start();" >
+          <% for(var i=0; i<send.length; i++){ %>
+            <% if(send[i].Type == "Events"){ %>
+              <% if(send[i].Link != ""){ %>
+                  <a href="/docs/<%= send[i].Link %>" target="_blank" >
+              <% } %>
+                    <div class="items-body-content" style="text-decoration: none;color: blue; font-weight: 400;">
+                  <span><img src="/assets/img/new.gif"></img> <%= send[i].Title %></span>
+                </div>
+              </a>
+            <% } %>
+          <% } %>
+        </marquee>
+        </div>
+        <a href="/viewallevent" style="float: right;text-decoration: none;color: rgb(173, 46, 0);background-color: #f6931d;border-radius:30px">Read more</a>
+      </div>
+    </div>
+</div>
+    <div class="services">
+      <div class="about">
+        <div class="tabs heading">
+          <h2>About Us</h2>
+        </div>
+        <div class="body">
+          D.A.V. Degree College established in year of 1970, in efficient operation of Aryan Educational trust, dedicated to spread education in purvanchal. In the beginning, the college got accreditation for conducting graduate arts faculty classes, but only after one year college got acceptance for classes of Mathematics and Biology classes. In the year 2006, under the self funded scheme of government, got acceptance for M.A. classes for subjects of Political Science and History (Medieval and Modern).
+        </div>
+      </div>
+      <div class="btns">
+        <div class="tabs" id="tabs">
+          <div
+            onclick="switchService(0, 'studentServices')"
+            class="activeTab tab"
+          >
+            Students
+          </div>
+          <div onclick="switchService(1, 'teacherServices')" class="tab">
+            Admission
+          </div>
+        </div>
+
+        <div class="btnsGrid" id="studentServices"></div>
+        <div class="btnsGrid hidden" id="teacherServices"></div>
+      </div>
+    </div>
+    <div style="background-image: url('/assets/img/back.jpg');background-size:cover;background-attachment: fixed;">
+      <div style="padding:20px;color:white;"><h1 style="text-align: center;">OUR COURSES </h1></div>
+      <div class="container">
+          <div class="row course">        
+            <div class="col">
+              <div class="row">
+                <div class="col text-center">
+                  <img src="/assets/img/ba-course.jpg">
+                </div>
+                <div class="col">
+                  <div class="row">
+                    <h3>BACHELOR OF ARTS</h3>
+                    <p class="text-justify">
+                      The Bachelor of Arts faculty in the college has a total of 10 topics including Hindi, English, Sanskrit, History ….
+                      <br>
+                      <button type="button" class="btn btn-outline-primary">View Details</button>
+                      <button type="button" class="btn btn-outline-primary">Send Enquiry</button>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col" >
+              <div class="row">
+                <div class="col text-center">
+                  <img src="/assets/img/ma-course.jpg">
+                </div>
+                <div class="col">
+                  <div class="row">
+                    <h3>MASTER OF ARTS</h3>
+                    <p class="text-justify">
+                      Permanent recognition in political science and history (medieval and modern) under at the postgraduate level in college is approved by the government.
+                      <br>
+                      <button type="button" class="btn btn-outline-primary">View Details</button>
+                      <button type="button" class="btn btn-outline-primary">Send Enquiry</button>
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>    
+            <div class="row">        
+              <div class="col">
+                <div class="row">
+                  <div class="col text-center">
+                    <img src="/assets/img/ba-course.jpg">
+                  </div>
+                  <div class="col">
+                    <div class="row">
+                      <h3>BACHELOR OF SCIENCE</h3>
+                      <p class="text-justify">
+                        We have two subject group for B.Sc. students to choose 1. Mathematics, Chemistry, Physics, Mathematics 2. Biology, Chemistry, Zoology, Botany
+                        <br>
+                        <button type="button" class="btn btn-outline-primary">View Details</button>
+                        <button type="button" class="btn btn-outline-primary">Send Enquiry</button>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col" >
+                <div class="row">
+                  <div class="col text-center">
+                    <img src="/assets/img/ma-course.jpg">
+                  </div>
+                  <div class="col">
+                    <div class="row">
+                      <h3>BACHELOR OF COMMERCE</h3>
+                      <p class="text-justify">
+                        Commerce departmentwas established in 2019 and is thus it is the newest department in the college..  
+                        <br>
+                        <button type="button" class="btn btn-outline-primary">View Details</button>
+                        <button type="button" class="btn btn-outline-primary">Send Enquiry</button>
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+    </div>
+</div>
+<%- include('./partials/footer') -%>

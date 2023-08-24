@@ -1,0 +1,20 @@
+<%- include('./partials/header') -%>
+<div class="head_title">ALL Events</div>
+<div class="page_content">
+        <ul>   
+        <% for(var i=0; i<send.length; i++){ %>
+            <% if(send[i].Type == "Events"){ %>
+                <li>
+              <% if(send[i].Link != ""){ %>
+                    <a href="/docs/<%= send[i].Link %>" target="_blank" >
+                <% } %>
+                    <div style="text-decoration: none;color: blue; font-weight: 500;">
+                    <span><%= send[i].Title %></span>
+                    </div>
+                </a>
+                </li>
+            <% } %>
+          <% } %>
+    </ul> 
+</div>
+<%- include('./partials/footer') -%>
