@@ -35,6 +35,18 @@ app.get('/ba', (req, res) => {
 app.get('/ma', (req, res) => {
   res.render('ma');
 });
+app.get('/gbody', (req, res) => {
+  res.render('gbody');
+});
+app.get('/syllabus', (req, res) => {
+  res.render('syllabus');
+});
+app.get('/timetable', (req, res) => {
+  res.render('timetable');
+});
+app.get('/alumniassoc', (req, res) => {
+  res.render('alumniassoc');
+});
 app.get('/bsc', (req, res) => {
   res.render('bsc');
 });

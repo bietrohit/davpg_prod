@@ -3,8 +3,8 @@ student = [{name:"Registration",image:"/assets/img/reg.png",Link:"/registration"
            {name:"Feedback Form",image:"/assets/img/feed.png",Link:"/Feedback"},
            {name:"Grivance Redressal",image:"/assets/img/griev.png",Link:"https://docs.google.com/forms/d/e/1FAIpQLSc47HWKe9dJx8C6XJsTDibN6zXNr9972P88WqVKuiaZryTAvw/viewform?vc=0&c=0&w=1&flr=0&pli=1"},
            {name:"Creative Corner",image:"/assets/img/creative.png",Link:".c_corner"},
-           {name:"Syllabus",image:"/assets/img/syll.png",Link:"http://ddugu.ac.in/Syllabi.aspx"},
-           {name:"Time Table",image:"/assets/img/timetable.png",Link:"http://ddugu.ac.in/Syllabi.aspx"}
+           {name:"Syllabus",image:"/assets/img/syll.png",Link:"/syllabus"},
+           {name:"Time Table",image:"/assets/img/timetable.png",Link:"/timetable"}
           ]
 admission = [{name:"Procpectus",image:"/assets/img/broucher.png",Link:"/admission"},
           {name:"Admission Procedure",image:"/assets/img/admission.png",Link:"/assets/docs/prospectus-2023.pdf"}
