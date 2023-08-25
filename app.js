@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine", "ejs");
  // Handling GET request
 app.get('/', (req, res) => {
-  var sql='SELECT * FROM davpg.news_events_marquee;';
+  var sql='SELECT * FROM davpg.news_events_marquee ORDER BY ID DESC;';
   connection.query(sql, function (err, data) {
     if (err){
       throw err;
@@ -28,6 +28,18 @@ app.get('/', (req, res) => {
 });
 app.get('/login', (req, res) => {
         res.render('login',{message:false});
+});
+app.get('/ba', (req, res) => {
+  res.render('ba');
+});
+app.get('/ma', (req, res) => {
+  res.render('ma');
+});
+app.get('/bsc', (req, res) => {
+  res.render('bsc');
+});
+app.get('/bcom', (req, res) => {
+  res.render('bcom');
 });
 app.get('/p_message', (req, res) => {
   res.render('p_message');
@@ -93,7 +105,7 @@ app.post('/login_auth', (req,res)=>{
   });
 });
 app.get('/viewNews', (req, res) => {
-  var sql='SELECT * FROM davpg.news_events_marquee order by Type;';
+  var sql='SELECT * FROM davpg.news_events_marquee order by Type, ID DESC;';
   connection.query(sql, function (err, data) {
     if (err){
       throw err;
@@ -104,7 +116,7 @@ app.get('/viewNews', (req, res) => {
   });
 });
 app.get('/viewallnews', (req, res) => {
-  var sql='SELECT * FROM davpg.news_events_marquee WHERE Type="News";';
+  var sql='SELECT * FROM davpg.news_events_marquee WHERE Type="News" ORDER BY ID DESC;';
   connection.query(sql, function (err, data) {
     if (err){
       throw err;
@@ -115,7 +127,7 @@ app.get('/viewallnews', (req, res) => {
   });
 });
 app.get('/viewallevent', (req, res) => {
-  var sql='SELECT * FROM davpg.news_events_marquee WHERE Type="Events";';
+  var sql='SELECT * FROM davpg.news_events_marquee WHERE Type="Events" ORDER BY ID DESC;';
   connection.query(sql, function (err, data) {
     if (err){
       throw err;

@@ -4,8 +4,11 @@ student = [{name:"Registration",image:"/assets/img/reg.png",Link:"/registration"
            {name:"Grivance Redressal",image:"/assets/img/griev.png",Link:"https://docs.google.com/forms/d/e/1FAIpQLSc47HWKe9dJx8C6XJsTDibN6zXNr9972P88WqVKuiaZryTAvw/viewform?vc=0&c=0&w=1&flr=0&pli=1"},
            {name:"Creative Corner",image:"/assets/img/creative.png",Link:".c_corner"},
            {name:"Syllabus",image:"/assets/img/syll.png",Link:"http://ddugu.ac.in/Syllabi.aspx"},
-           {name:"Time Table",image:"/assets/img/syll.png",Link:"http://ddugu.ac.in/Syllabi.aspx"}
+           {name:"Time Table",image:"/assets/img/timetable.png",Link:"http://ddugu.ac.in/Syllabi.aspx"}
           ]
+admission = [{name:"Procpectus",image:"/assets/img/broucher.png",Link:"/admission"},
+          {name:"Admission Procedure",image:"/assets/img/admission.png",Link:"/assets/docs/prospectus-2023.pdf"}
+         ]
 const switchService = (i, j) => {
   let tabs = document.querySelectorAll(".btns .tab");
   tabs = [...tabs];
@@ -29,9 +32,11 @@ onload = () => {
     document.getElementById(
       "studentServices"
     ).innerHTML += '<span><a href='+student[i].Link+' target="_blank"><img src='+student[i].image+'><p>'+student[i].name+'</p></a></span>';
-    document.getElementById(
+  }
+  for (let i = 0; i < 2; i++) {
+  document.getElementById(
       "teacherServices"
-    ).innerHTML += '<span><a href='+student[i].Link+' target="_blank"><img src='+student[i].image+'><p>'+student[i].name+'</p></a></span>';
+    ).innerHTML += '<span><a href='+admission[i].Link+' target="_blank"><img src='+admission[i].image+'><p>'+admission[i].name+'</p></a></span>';
   }
 
   //setTimeout(() => {scrollForever(0)}, 3000)
