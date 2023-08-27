@@ -41,6 +41,9 @@ app.get('/gbody', (req, res) => {
 app.get('/syllabus', (req, res) => {
   res.render('syllabus');
 });
+app.get('/launch', (req, res) => {
+  res.render('launch');
+});
 app.get('/timetable', (req, res) => {
   res.render('timetable');
 });
@@ -256,7 +259,7 @@ app.post('/reg_sub', upload.single('photo'), (req, res, next)=>{
   }
 });
 // Port Number
-const PORT = process.env.PORT ||80;
+const PORT = process.env.PORT ||8000;
  
 // Server Setup
 app.listen(PORT,console.log(
