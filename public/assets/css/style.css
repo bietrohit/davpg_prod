@@ -783,6 +783,13 @@ margin-right: 20px;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(2, 1fr);
 }
+@media(max-width: 584px){
+  .btnsGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+  }
+ }
 
 .btnsGrid span {
   box-shadow: inset 0px 0px 15px 12px rgba(0,0,0,0.1);
@@ -807,7 +814,7 @@ margin-right: 20px;
 }
 .btnsGrid p {
   position: absolute;
-  bottom: 0%;
+  bottom: -10%;
   left: 50%;
   transform: translateX(-50%);
   font-size: 12px;

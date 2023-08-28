@@ -6,7 +6,7 @@ student = [{name:"Registration",image:"/assets/img/reg.png",Link:"/registration"
            {name:"Syllabus",image:"/assets/img/syll.png",Link:"/syllabus"},
            {name:"Time Table",image:"/assets/img/timetable.png",Link:"/timetable"}
           ]
-admission = [{name:"Procpectus",image:"/assets/img/broucher.png",Link:"/admission"},
+admission = [{name:"Prospectus",image:"/assets/img/broucher.png",Link:"/admission"},
           {name:"Admission Procedure",image:"/assets/img/admission.png",Link:"/assets/docs/prospectus-2023.pdf"}
          ]
 const switchService = (i, j) => {
