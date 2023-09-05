@@ -6,8 +6,31 @@ const multer = require("multer")
 const path = require('path');
 const axios = require('axios');
 const fs = require('fs');
+const session = require('express-session');
+const mysqlStore = require('express-mysql-session')(session);
+const options ={
+  password: "admin",
+  user: "root",
+  database: "davpg",
+  host: "localhost",
+  port: 3306,
+  createDatabaseTable: true
+}
+const TWO_HOURS = 1000 * 60 * 60 * 2
+const  sessionStore = new mysqlStore(options);
 // Creating express object
 const app = express();
+app.use(session({
+  name: 'test',
+  resave: false,
+  saveUninitialized: false,
+  store: sessionStore,
+  secret: 'dfr324567u6uhbfgfgh8iijmn',
+  cookie: {
+      maxAge: TWO_HOURS,
+      sameSite: true
+  }
+}))
 app.use(express.static('public'));
 var bodyParser=require("body-parser");
 const con = require('./db');
@@ -26,6 +49,13 @@ app.get('/', (req, res) => {
     }
   });
 });
+const IsAuth=(req,res,next)=>{
+  if(req.session.isAuth){
+    next()
+  }else{
+    res.render('login',{message:false});
+  }
+}
 app.get('/login', (req, res) => {
         res.render('login',{message:false});
 });
@@ -107,19 +137,21 @@ app.post('/login_auth', (req,res)=>{
       throw err;
     } 
     else{
-      console.log(pass=="admin@123")
       if(data.lenght<0 || data[0]["Pass"]!=pass)
         res.render('login',{message:true});
       else{
-        if(data[0]["UserType"]=="Admin")
+        if(data[0]["UserType"]=="Admin"){
+          req.session.isAuth = true;
+          req.session.username = data[0]["Id"];
           res.render('admin_dashboard');
+        }
         else
           res.render('faculty');
       }
     }
   });
 });
-app.get('/viewNews', (req, res) => {
+app.get('/viewNews', IsAuth, (req, res) => {
   var sql='SELECT * FROM davpg.news_events_marquee order by Type, ID DESC;';
   connection.query(sql, function (err, data) {
     if (err){
@@ -152,7 +184,7 @@ app.get('/viewallevent', (req, res) => {
     }
   });
 });
-app.get('/viewalumni', (req, res) => {
+app.get('/viewalumni', IsAuth,(req, res) => {
   var sql='SELECT * FROM davpg.alumni;';
   connection.query(sql, function (err, data) {
     if (err){
@@ -163,7 +195,7 @@ app.get('/viewalumni', (req, res) => {
     }
   });
 });
-app.get('/delete_news/:id/:file?', (req, res) => {
+app.get('/delete_news/:id/:file?', IsAuth,(req, res) => {
   var Id= req.params.id;
   var sql='DELETE FROM davpg.news_events_marquee WHERE Id='+Id;
   connection.query(sql, function (err, data) {
@@ -183,7 +215,7 @@ app.get('/delete_news/:id/:file?', (req, res) => {
     }
   });
 });
-app.get('/uploadNews', (req, res) => {
+app.get('/uploadNews', IsAuth, (req, res) => {
   res.render('uploadNews');
 });
 app.get('/nonteaching', (req, res) => {
@@ -206,7 +238,7 @@ const fileFilter = (req, file, cb) => {
   }
 }
 const upload = multer({ storage: storage, fileFilter: fileFilter });
-app.post('/uploadnews', upload.single('myfile'), (req, res, next) => {
+app.post('/uploadnews', IsAuth, upload.single('myfile'), (req, res, next) => {
   try {
         var type=req.body.type;
         var title = req.body.title;
@@ -257,6 +289,12 @@ app.post('/reg_sub', upload.single('photo'), (req, res, next)=>{
   }catch (error) {
     console.error(error);
   }
+});
+app.get('/logout', (req, res, next) => {
+  req.session.destroy((err) => {
+    if (err) throw err;
+    res.redirect("/login");
+  });
 });
 // Port Number
 const PORT = process.env.PORT ||8000;
