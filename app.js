@@ -6,6 +6,7 @@ const multer = require("multer")
 const path = require('path');
 const axios = require('axios');
 const fs = require('fs');
+const cors=require("cors");
 const session = require('express-session');
 const mysqlStore = require('express-mysql-session')(session);
 const options ={
@@ -20,6 +21,7 @@ const TWO_HOURS = 1000 * 60 * 60 * 2
 const  sessionStore = new mysqlStore(options);
 // Creating express object
 const app = express();
+app.use(cors());
 app.use(session({
   name: 'test',
   resave: false,
