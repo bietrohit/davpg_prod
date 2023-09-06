@@ -29,8 +29,10 @@ app.use(session({
   store: sessionStore,
   secret: 'dfr324567u6uhbfgfgh8iijmn',
   cookie: {
+      httpOnly: true,
       maxAge: TWO_HOURS,
-      sameSite: true
+      sameSite: true,
+      secure: true
   }
 }))
 app.use(express.static('public'));
