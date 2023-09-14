@@ -242,7 +242,7 @@ const fileFilter = (req, file, cb) => {
   }
 }
 const upload = multer({ storage: storage, fileFilter: fileFilter });
-app.post('/uploadnews', IsAuth, upload.single('myfile'), (req, res, next) => {
+app.post('/uploadnews', upload.single('myfile'), (req, res, next) => {
   try {
         var type=req.body.type;
         var title = req.body.title;
