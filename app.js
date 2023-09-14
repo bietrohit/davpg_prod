@@ -32,7 +32,7 @@ app.use(session({
       httpOnly: true,
       maxAge: TWO_HOURS,
       sameSite: true,
-      secure: true
+      secure: false
   }
 }))
 app.use(express.static('public'));
