@@ -1,4 +1,3 @@
-
 // Requiring module
 const express = require('express');
 var connection = require('./db');
@@ -10,10 +9,10 @@ const cors=require("cors");
 const session = require('express-session');
 const mysqlStore = require('express-mysql-session')(session);
 const options ={
-  password: "admin",
+  password: "root",
   user: "root",
   database: "davpg",
-  host: "localhost",
+  host: "127.0.0.1",
   port: 3306,
   createDatabaseTable: true
 }
@@ -40,18 +39,30 @@ var bodyParser=require("body-parser");
 const con = require('./db');
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine", "ejs");
- // Handling GET request
-app.get('/', (req, res) => {
-  var sql='SELECT * FROM davpg.news_events_marquee ORDER BY ID DESC;';
-  connection.query(sql, function (err, data) {
-    if (err){
-      throw err;
-    } 
-    else{
-      global.send=data;
-      res.render('index',{send:data});
+
+let header_marquee_data = undefined;
+function fetchMarqueeDetails(callback) {
+  const query = 'SELECT * FROM davpg.news_events_marquee ORDER BY ID DESC;';
+  connection.query(query, (error, results) => {
+    if (error) {
+      callback(error, null);
+    } else {
+      callback(null, results);
     }
   });
+}
+fetchMarqueeDetails((error, results) => {
+  if (error) {
+    console.error('Error fetching marquee details:', error);
+  } else {
+    header_marquee_data = results;
+  }
+});
+
+
+// Handling GET request
+app.get('/', (req, res) => {
+      res.render('index',{send : header_marquee_data, header_marquee_data});
 });
 const IsAuth=(req,res,next)=>{
   if(req.session.isAuth){
@@ -60,77 +71,82 @@ const IsAuth=(req,res,next)=>{
     res.render('login',{message:false});
   }
 }
+
+app.get('/facutly_profile',(req,res)=>{
+    res.render('faculty_profile',{header_marquee_data});
+})
+
 app.get('/login', (req, res) => {
-        res.render('login',{message:false});
+        res.render('login',{message:false,header_marquee_data});
 });
 app.get('/ba', (req, res) => {
-  res.render('ba');
+  res.render('ba',{header_marquee_data});
 });
 app.get('/ma', (req, res) => {
-  res.render('ma');
+  res.render('ma',{header_marquee_data});
 });
 app.get('/gbody', (req, res) => {
-  res.render('gbody');
+  res.render('gbody',{header_marquee_data});
 });
 app.get('/syllabus', (req, res) => {
-  res.render('syllabus');
+  res.render('syllabus',{header_marquee_data});
 });
 app.get('/launch', (req, res) => {
-  res.render('launch');
+  res.render('launch',{header_marquee_data});
 });
 app.get('/timetable', (req, res) => {
-  res.render('timetable');
+  res.render('timetable',{header_marquee_data});
 });
 app.get('/alumniassoc', (req, res) => {
-  res.render('alumniassoc');
+  res.render('alumniassoc',{header_marquee_data});
 });
 app.get('/bsc', (req, res) => {
-  res.render('bsc');
+  res.render('bsc',{header_marquee_data});
 });
 app.get('/bcom', (req, res) => {
-  res.render('bcom');
+  res.render('bcom',{header_marquee_data});
 });
 app.get('/p_message', (req, res) => {
-  res.render('p_message');
+  res.render('p_message',{header_marquee_data});
 });
 app.get('/vission', (req, res) => {
-  res.render('vission');
+  res.render('vission',{header_marquee_data});
 });
 app.get('/history', (req, res) => {
-  res.render('history');
+  res.render('history',{header_marquee_data});
 });
 app.get('/practorial', (req, res) => {
-  res.render('practorial');
+  res.render('practorial',{header_marquee_data});
 });
 app.get('/alumnireg', (req, res) => {
-  res.render('alumnireg',{error:false});
+  res.render('alumnireg',{error:false,header_marquee_data});
 });
 app.get('/grievance', (req, res) => {
-  res.render('grievance');
+  res.render('grievance',{header_marquee_data});
 });
 app.get('/research', (req, res) => {
-  res.render('research');
+  res.render('research',{header_marquee_data});
 });
 app.get('/literary', (req, res) => {
-  res.render('literary');
+  res.render('literary',{header_marquee_data});
 });
 app.get('/career', (req, res) => {
-  res.render('career');
+  res.render('career',{header_marquee_data});
 });
 app.get('/sexual', (req, res) => {
-  res.render('sexual');
+  res.render('sexual',{header_marquee_data});
 });
 app.get('/admission', (req, res) => {
-  res.render('admission');
+  res.render('admission',{header_marquee_data});
 });
 app.get('/contact', (req, res) => {
-  res.render('contact');
+  res.render('contact',{header_marquee_data});
 });
 app.get('/code_of_conduct', (req, res) => {
-  res.render('code_of_conduct');
+  res.render('code_of_conduct',{header_marquee_data});
 });
 app.get('/m_message', (req, res) => {
-  res.render('m_message');
+  res.render('m_message',{header_marquee_data});
 });
 app.post('/login_auth', (req,res)=>{
   var username=req.body.uname;
@@ -162,7 +178,7 @@ app.get('/viewNews', IsAuth, (req, res) => {
       throw err;
     } 
     else{
-      res.render('viewNews',{send:data});
+      res.render('viewNews',{send:data,header_marquee_data});
     }
   });
 });
@@ -173,7 +189,7 @@ app.get('/viewallnews', (req, res) => {
       throw err;
     } 
     else{
-      res.render('viewallnews',{send:data});
+      res.render('viewallnews',{send:data,header_marquee_data});
     }
   });
 });
@@ -184,7 +200,7 @@ app.get('/viewallevent', (req, res) => {
       throw err;
     } 
     else{
-      res.render('viewallevent',{send:data});
+      res.render('viewallevent',{send:data,header_marquee_data});
     }
   });
 });
@@ -195,7 +211,7 @@ app.get('/viewalumni', IsAuth,(req, res) => {
       throw err;
     } 
     else{
-      res.render('viewalumni',{send:data});
+      res.render('viewalumni',{send:data,header_marquee_data});
     }
   });
 });
@@ -220,10 +236,10 @@ app.get('/delete_news/:id/:file?', IsAuth,(req, res) => {
   });
 });
 app.get('/uploadNews', IsAuth, (req, res) => {
-  res.render('uploadNews');
+  res.render('uploadNews',{header_marquee_data});
 });
 app.get('/nonteaching', (req, res) => {
-  res.render('nonteaching');
+  res.render('nonteaching',{header_marquee_data});
 });
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {

@@ -22,10 +22,10 @@
         </div>
         <div class="news">
             <marquee class="news-content" onmouseover="this.stop();" onmouseout="this.start()";>
-              <% for(var i=0; i<send.length; i++){ %>
-                <% if(send[i].Type == "Marquee"){ %>
-                    <a href="/docs/<%= send[i].Link %>" target="_blank" >
-                      <img src="/assets/img/33.gif"></img><%= send[i].Title %>
+              <% for(var i=0; i<header_marquee_data.length; i++){ %>
+                <% if(header_marquee_data[i].Type == "Marquee"){ %>
+                    <a href="/docs/<%= header_marquee_data[i].Link %>" target="_blank" >
+                      <img src="/assets/img/33.gif"></img><%= header_marquee_data[i].Title %>
                     </a>
                 <% } %>
               <% } %>
