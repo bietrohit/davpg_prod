@@ -1,7 +1,53 @@
 <%- include('./partials/header') -%>
 
-<div style="height: 80vh;">
+<style>
+    .main_profile{
+        display: flex;
+    }
+    .profile_pic_resume{
+        width: 30%;
+    }
+    .card{
+        border:0px;
+        background-color: rgb(233, 234, 237);
+    }
+    .card img{
+        border-radius: 10%;
+        max-width: 150px;
+        max-height: 150px;
+        width: auto;
+        height: auto;
+        box-shadow: 3px 3px rgb(147, 143, 143);
+    }
+    .resume_box span{
+        box-shadow: 3px 3px rgb(147, 143, 143);
+    }
+</style>
 
+
+<div style="height: 100vh; padding: 50px 100px;">
+    <div className="main_box" style="width: 60vw; height: 100vh; background-color: rgb(240, 250, 250);">
+        <div class="main_profile p-3">
+            <div class="profile_pic_resume ">
+                <div class="card p-3 py-4" >
+                    <div class="text-center">
+                        <img src="http://www.mmmut.ac.in/News_content/IMGFaculty198.jpg">
+                    </div>
+                    
+                    <div class="resume_box text-center mt-3" >
+                        <span class="bg-secondary p-1 px-4 rounded text-white" >
+                            Resume
+                        </span>            
+                    </div> 
+                </div>
+            </div>
+            <div class="basic_details">
+                <div class="card p-3 py-4">
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <%- include('./partials/footer') -%>

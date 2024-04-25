@@ -14,3 +14,11 @@ const switchService = (i, j) => {
     document.getElementById("studentServices").classList.add("hidden");
   }
 };
+
+$(function(){
+  $('.dropdown').hover(function() {
+    $(this).find('.dropdown-menu').first().addClass('show');
+  }, function() {
+    $(this).find('.dropdown-menu').first().removeClass('show');
+  });  
+});

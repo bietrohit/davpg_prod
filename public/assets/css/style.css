@@ -36,15 +36,18 @@ margin-right: 20px;
 .nav-link{
   color:rgb(255, 106, 0);
 }
-.navbar-nav li:hover > .dropdown {
+.navbar-nav li:hover .dropdown {
   display: block;
-  color: white;
+  color: rgb(255, 255, 255);
   text-decoration: none;
 }
 .nav-link:hover{
   background-color: #ff5e14;
   color:white;
   display: block;
+}
+.dropdown-item:hover{
+  background-color: #f1efef;
 }
 @media screen and (min-width:1155px) and (max-width:1455px) {
   .navbar-nav{

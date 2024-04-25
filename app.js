@@ -6,9 +6,9 @@ const path = require('path');
 const axios = require('axios');
 const fs = require('fs');
 const cors=require("cors");
-const session = require('express-session');
+const session = require('express-session'); 
 const mysqlStore = require('express-mysql-session')(session);
-const options ={
+const options ={ 
   password: "root",
   user: "root",
   database: "davpg",
@@ -38,8 +38,11 @@ app.use(express.static('public'));
 var bodyParser=require("body-parser");
 const con = require('./db');
 app.use(bodyParser.urlencoded({extended:true}));
-app.set("view engine", "ejs");
+app.set('views',path.join(__dirname, 'views'))
+app.set("view engine", "ejs"); 
 
+
+//function for fetching header marquee data
 let header_marquee_data = undefined;
 function fetchMarqueeDetails(callback) {
   const query = 'SELECT * FROM davpg.news_events_marquee ORDER BY ID DESC;';
@@ -71,7 +74,7 @@ const IsAuth=(req,res,next)=>{
     res.render('login',{message:false});
   }
 }
-
+ 
 app.get('/facutly_profile',(req,res)=>{
     res.render('faculty_profile',{header_marquee_data});
 })
@@ -110,10 +113,10 @@ app.get('/p_message', (req, res) => {
   res.render('p_message',{header_marquee_data});
 });
 app.get('/vission', (req, res) => {
-  res.render('vission',{header_marquee_data});
+  res.render('vission',{header_marquee_data});  
 });
-app.get('/history', (req, res) => {
-  res.render('history',{header_marquee_data});
+app.get('/history', (req, res) => {  
+  res.render('history',{header_marquee_data}); 
 });
 app.get('/practorial', (req, res) => {
   res.render('practorial',{header_marquee_data});
