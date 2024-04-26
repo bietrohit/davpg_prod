@@ -15,10 +15,34 @@ const switchService = (i, j) => {
   }
 };
 
-$(function(){
-  $('.dropdown').hover(function() {
-    $(this).find('.dropdown-menu').first().addClass('show');
-  }, function() {
-    $(this).find('.dropdown-menu').first().removeClass('show');
+
+const mediaQuery = window.matchMedia('(min-width: 770px)');
+if (mediaQuery.matches) {
+  $(function(){
+    $('.dropdown:not(.nav-item)').hover(function() {
+      $(this).children('.dropdown-menu').addClass('dropdown-menu-align-right');
+    }, function() {
+      $(this).children('.dropdown-menu').removeClass('dropdown-menu-align-right');
   });  
-});
+  $(function(){
+    $('.dropdown').hover(function() {
+      $(this).children('.dropdown-menu').addClass('show');
+    }, function() {
+      $(this).children('.dropdown-menu').removeClass('show');
+    });  
+  });
+  });
+}
+// else{
+//   $(function(){
+//     $('.dropdown').click(function() {
+//       $(this).children('div.dropdown-menu:not(.show)').addClass('show');
+//     }); 
+//     $('.dropdown').click(function() {
+//       $(this).children('div.dropdown-menu.show').removeClass('show');
+//     });
+//     $('.dropdown').click(function() {
+//       $(this).children('div.dropdown-menu.show').removeClass('show');
+//     });
+// });
+// }
