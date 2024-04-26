@@ -2,6 +2,8 @@
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   animation: fade 1s;
   font-size: 15px;
+  padding: 0px;
+  margin: 0px;
 }
 
 
@@ -66,7 +68,7 @@ margin-right: 20px;
     font-size: 70% !important;
   }
 }
-@media screen and (max-width:900px) {
+@media screen and (max-width:989px) {
   .navbar-nav{
     font-size: 75% !important;
   }
@@ -165,6 +167,91 @@ margin-right: 20px;
 
   }
 }
+
+/* CSS for faculty_profile page */
+
+.main-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 70vw;
+  height: auto;
+  border-radius: 2%;
+  padding: 50px 100px;
+  margin-bottom: 50px;
+}
+.profile_pic_resume{
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  height: 350px;
+  justify-content: center;
+  margin-right: 2px;
+} 
+.basic-card{
+  width: 60vw;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border:0px;
+  border-radius: 10px;
+  background-color: rgb(233, 234, 237);
+  margin-bottom: 10px;
+  padding-top: 10px;
+}
+.basic-card img{
+  border-radius: 10%;
+  max-width: 200px;
+  max-height: 200px;
+  width: auto;
+  height: auto;
+  box-shadow: 3px 3px rgb(147, 143, 143);
+}
+.resume_box span{
+  box-shadow: 3px 3px rgb(147, 143, 143);
+}
+.basic_details{
+  height: 350px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 70%;
+}
+.info-item{
+  width: 90%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+}
+.info-item h6,p{
+  width: 50%;
+  padding : 0;
+  margin: 0;
+}
+.added-facutly-details{
+  display: flex;
+  flex-direction: column;
+}
+.added-facutly-details hr{
+  width: 90%;
+}
+.basic-header{
+  width: 92%;
+  height: auto;
+  border-radius: 5px;
+  padding: 5px;
+  background-color: rgb(237, 155, 84);
+  color: white;
+}
+.basic-header h4{
+  margin: 0px;
+}
+
+
+
 /* cell number */
 .gallery-cell:before {
   display: block;
@@ -305,6 +392,7 @@ margin-right: 20px;
 
 .logo{
   display: none;
+  width: auto;
 }
 
 .logo img{
@@ -319,7 +407,7 @@ margin-right: 20px;
   display: none;
   }
 }
-@media screen and (max-width:400px) {
+@media screen and (max-width:420px) {
   .navbar-brand{
     width: 50%;
   }
@@ -556,6 +644,10 @@ margin-right: 20px;
   float: left;
   width: 50%;
   margin-bottom: 12px;
+
+}
+.footer-widget ul,ol {
+  padding-left: 0px;
 }
 .footer-widget ul li a:hover{
   color: #ff5e14;

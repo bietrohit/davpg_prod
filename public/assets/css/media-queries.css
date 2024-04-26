@@ -63,3 +63,31 @@
     display: flex;
   }
 }
+
+@media screen and (max-width:1150px) {
+  .main-box {
+    width: 95vw;
+    margin: auto;
+    padding: 50px 0px;
+  } 
+  .basic-card{
+    width: 90vw;
+    height: auto;
+    flex-direction: column;
+  }
+  .profile_pic_resume{
+    width: auto;
+    height: auto;
+    margin-bottom: 25px;
+  }
+  .basic_details{
+    width: auto;
+    height: auto;
+  }
+  .info-item{
+    flex-direction: column;
+  }
+  .info-item h6,p{
+    width: 100%;
+  }
+}

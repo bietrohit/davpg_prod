@@ -35,11 +35,21 @@ app.use(session({
   }
 }))
 app.use(express.static('public'));
-var bodyParser=require("body-parser");
+var bodyParser=require("body-parser"); 
 const con = require('./db');
 app.use(bodyParser.urlencoded({extended:true}));
 app.set('views',path.join(__dirname, 'views'))
 app.set("view engine", "ejs"); 
+
+var livereload = require("livereload");
+var connectLiveReload = require("connect-livereload");
+const liveReloadServer = livereload.createServer();
+liveReloadServer.server.once("connection", () => {
+  setTimeout(() => {
+    liveReloadServer.refresh("/");
+  }, 100);
+});
+app.use(connectLiveReload());
 
 
 //function for fetching header marquee data
