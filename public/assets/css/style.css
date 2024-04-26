@@ -36,9 +36,9 @@ margin-right: 20px;
 .nav-link{
   color:rgb(255, 106, 0);
 }
-.navbar-nav li:hover > .dropdown {
+.navbar-nav li:hover {
   display: block;
-  color: white;
+  color: rgb(145, 42, 42);
   text-decoration: none;
 }
 .nav-link:hover{

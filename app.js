@@ -40,18 +40,28 @@ var bodyParser=require("body-parser");
 const con = require('./db');
 app.use(bodyParser.urlencoded({extended:true}));
 app.set("view engine", "ejs");
- // Handling GET request
-app.get('/', (req, res) => {
-  var sql='SELECT * FROM davpg.news_events_marquee ORDER BY ID DESC;';
-  connection.query(sql, function (err, data) {
-    if (err){
-      throw err;
-    } 
-    else{
-      global.send=data;
-      res.render('index',{send:data});
+
+let header_marquee_data = undefined;
+function fetchMarqueeDetails(callback) {
+  const query = 'SELECT * FROM davpg.news_events_marquee ORDER BY ID DESC;';
+  connection.query(query, (error, results) => {
+    if (error) {
+      callback(error, null);
+    } else {
+      callback(null, results);
     }
   });
+}
+fetchMarqueeDetails((error, results) => {
+  if (error) {
+    console.error('Error fetching marquee details:', error);
+  } else {
+    header_marquee_data = results;
+  }
+});
+ // Handling GET request
+ app.get('/', (req, res) => {
+  res.render('index',{send : header_marquee_data, header_marquee_data});
 });
 const IsAuth=(req,res,next)=>{
   if(req.session.isAuth){
@@ -126,6 +136,12 @@ app.get('/admission', (req, res) => {
 app.get('/contact', (req, res) => {
   res.render('contact');
 });
+app.get('/facultylogin', (req, res) => {
+  res.render('faculty_admin_login');
+});
+app.get('/addfaculty', (req, res) => {
+  res.render('addfaculty');
+});
 app.get('/code_of_conduct', (req, res) => {
   res.render('code_of_conduct');
 });
@@ -144,7 +160,7 @@ app.post('/login_auth', (req,res)=>{
       if(data.lenght<0 || data[0]["Pass"]!=pass)
         res.render('login',{message:true});
       else{
-        if(data[0]["UserType"]=="Admin"){
+        if(data[0]["UserType"]=="Admin" || data[0]["UserType"]=="admin" ){
           req.session.isAuth = true;
           req.session.username = data[0]["Id"];
           res.render('admin_dashboard');
@@ -172,7 +188,7 @@ app.get('/viewallnews', (req, res) => {
     if (err){
       throw err;
     } 
-    else{
+    else{ 
       res.render('viewallnews',{send:data});
     }
   });
@@ -264,6 +280,44 @@ app.post('/uploadnews', upload.single('myfile'), (req, res, next) => {
       console.error(error);
   }
 });
+app.get('/addfaculty', IsAuth, (req, res) => {
+  res.render('addfaculty');
+});
+app.post('/addfaculty', (req, res) => {
+  const name = req.body.name;
+  const email = req.body.email;
+  const psw = req.body.psw;
+  const department = req.body.dept;
+  const designation = req.body.designation;
+  const userType = 'Faculty';
+
+  // Insert data into the user table
+  const insertUserQuery = 'INSERT INTO davpg.user (Id, Pass, UserType) VALUES (?, ?, ?)';
+  connection.query(insertUserQuery, [email, psw, userType], (err, result) => {
+    if (err) {
+      console.error('Error inserting user data:', err);
+      res.status(500).json({ error: 'An error occurred while registering faculty.' });
+      return;
+    }
+    console.log('User registered successfully');
+    // console.log(JSON.stringify(result));
+
+    // Insert data into the faculty table using the retrieved user ID
+    const insertFacultyQuery = 'INSERT INTO davpg.faculty (Id, Name, Department, Designation) VALUES (?, ?, ?, ?)';
+    connection.query(insertFacultyQuery, [email, name, department, designation], (err, result) => {
+      if (err) {
+        console.error('Error inserting faculty data:', err);
+        res.status(500)({ error: 'An error occurred while saving faculty data.' });
+        return;
+      }
+
+      console.log('Faculty data saved successfully');
+      // res.status(200).json({ message: 'Faculty data saved successfully' });
+      res.redirect(302,'/addfaculty');
+    });
+  });
+});
+
 app.post('/reg_sub', upload.single('photo'), (req, res, next)=>{
   try{  
     console.log(req.file);
