@@ -38,7 +38,7 @@ select {
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 80vh;
+      height: 70vh;
       background-color: #f2f2f2;
     }
     
@@ -63,9 +63,10 @@ select {
       margin: 8px 0;
       display: inline-block;
       border: 1px solid #ccc;
-      border-radius: 5px;
+      border-radius: 5px; 
       box-sizing: border-box;
     }
+    
     
     /* Submit button */
     .submit-btn {
@@ -101,21 +102,6 @@ select {
       <div class="form-container">
         <h1 class="heading11">Add Faculty</h1>
         <form action="/addfaculty" method="post">
-
-            <label for="Department" style="font-weight: 600;">Department</label>
-            <select name="dept" id="dept">
-              <option value="arts">Arts</option>
-              <option value="commerce">Commerce</option>
-              <option value="education">Education</option>
-              <option value="science">Science</option>
-            </select>
-            <!-- <input type="submit" value="Submit" /> -->
-            <label for=designation" style="font-weight: 600;">Designation</label>
-            <select name="designation" id="designation">
-              <option value="proffesor">Proffesor</option>
-              <option value="assitant proffesor">Assitant Proffesor</option>
-              <option value="associate proffesor">Associate Proffesor</option>
-            </select>
       
           <label for="name"><b>Name</b></label>
           <input type="text" placeholder="Enter Name" name="name" required>
@@ -123,6 +109,20 @@ select {
           <input type="text" placeholder="Enter Username" name="email" required>
           <label for="psw"><b>Password</b></label>
           <input type="password" placeholder="Enter Password" name="psw" required>
+          <label for="Department" style="font-weight: 600;">Department</label>
+            <select name="dept" id="dept">
+              <option value="arts">Arts</option>
+              <option value="commerce">Commerce</option>
+              <option value="education">Education</option>
+              <option value="science">Science</option>
+            </select>
+            <!-- <input type="submit" value="Submit" /> -->
+            <label for="designation" style="font-weight: 600;">Designation</label>
+            <select name="designation" id="designation">
+              <option value="proffesor">Proffesor</option>
+              <option value="assitant proffesor">Assitant Proffesor</option>
+              <option value="associate proffesor">Associate Proffesor</option>
+            </select>
     
           <button type="submit" class="submit-btn">Submit</button>
         </form>
