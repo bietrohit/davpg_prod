@@ -43,6 +43,8 @@ app.set("view engine", "ejs");
 
 var livereload = require("livereload");
 var connectLiveReload = require("connect-livereload");
+const { isStringObject } = require('util/types');
+const { title } = require('process');
 const liveReloadServer = livereload.createServer();
 liveReloadServer.server.once("connection", () => {
   setTimeout(() => {
@@ -86,7 +88,78 @@ const IsAuth=(req,res,next)=>{
 }
  
 app.get('/facutly_profile',(req,res)=>{
-    res.render('faculty_profile',{header_marquee_data});
+  const props = {
+    name: 'Dr. Rohit Kumar Tiwari',
+    photo: 'http://www.mmmut.ac.in/News_content/IMGFaculty198.jpg',
+    resume: 'https://www.davpgcollege.in/docs/Dr_Rajesh_Kumar.pdf',
+    designation: 'Assistant Professor',
+    phone: '1234567890',
+    email: 'abs@gmail.com',
+    department: 'Department of Computer Science',
+    area_of_interest: 'Machine Learning, Data Science, Artificial Intelligence',
+    highest_qualification: 'Ph.D.',
+    teachingExperience: '10 years',
+    publications_books_patents: '10',
+    seminar_conference_workshop_organized: '20',
+    seminar_conference_workshop_attended: '20',
+    fellowship_awards: 'ministry of science and technology',
+    membership: 'IEEE, ACM',
+    masters_supervised: '10',
+    phd_supervised: '5',
+    other_info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien fermentum aliquam lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien fermentum aliquam.lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien fermentum aliquam.lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien fermentum aliquam.'
+  };
+  const experience =[
+    {
+      from: '2010',
+      to: '2015',
+      postion: 'Assistant Professor',
+      organisation: 'XYZ College'
+    },
+    {
+      from: '2015',
+      to: '2020',
+      postion: 'Associate Professor',
+      organisation: 'ABC College ' 
+    },
+    {
+      from: '2020',
+      to: 'Present',
+      postion: 'Professor',
+      organisation: 'DAVPG College'
+    }
+  ];
+  const publications=[
+    {
+      title: 'Machine Learning',
+      dept: 'Computer Science',
+      category: 'Journal',
+      year: '2015',
+      month: '5',
+      indexing: 'SCI',
+      issn: '123456',
+      impact: '5.6'
+    },
+    {
+      title: 'Data Science',
+      dept: 'Computer Science',
+      category: 'Journal',
+      year: '2016',
+      month: '6',
+      indexing: 'SCI',
+      issn: '123456',
+      impact: '5.6'
+    },{
+      title: 'Artificial Intelligence',
+      dept: 'Computer Science',
+      category: 'Journal',
+      year: '2017',
+      month: '7',
+      indexing: 'SCI',
+      issn: '123456',
+      impact: '5.6'
+    }
+  ];
+  res.render('faculty_profile',{header_marquee_data,props,experience,publications});
 })
 
 app.get('/login', (req, res) => {

@@ -5,7 +5,7 @@
         <div class="basic-card p-3">
             <div class="profile_pic_resume ">
                 <div class="text-center">
-                    <img src="http://www.mmmut.ac.in/News_content/IMGFaculty198.jpg">
+                    <img src="<%= props.photo %>">
                 </div>
                 
                 <div class="resume_box text-center mt-3" >
@@ -15,72 +15,97 @@
                 </div> 
             </div>
             <div class="basic_details">
-                <h3>Dr. Rohit Kumar Tiwari</h3><hr>
-                <h5>Assistant Professor</h5><hr>
-                <div> <i class="fa fa-phone"></i> 1234567890 </div><hr>
-                <div> <i class="fa fa-envelope"></i> abcd@gmail.com </div><hr>
-                <div> Computer Science and Engineering</div><hr>
-                <div><strong>Area of Interest:</strong> Cloud Computing, Computer Vision, Image Processing</div><hr>
+                <hr>
+                <h3><%= props.name %></h3><hr>
+                <h5><%= props.designation %></h5><hr>
+                <div> <i class="fa fa-phone"></i> <%= props.phone %> </div><hr>
+                <div> <i class="fa fa-envelope"></i> <%= props.email %> </div><hr>
+                <div> <%= props.department %></div><hr>
+                <div><strong>Area of Interest: </strong><%= props.area_of_interest %></div><hr>
             </div>
         </div>
         <div class="basic-card added-facutly-details">
+            <hr>
             <div class="info-item">
                 <h6>Highest Qualification</h6>
-                <p>Ph.D. (Computer Science and Engineering)</p>
+                <p><%= props.highest_qualification %></p>
             </div><hr>
             <div class="info-item">
-                <h6>Highest Qualification</h6>
-                <p>Ph.D. (Computer Science and Engineering)</p>
+                <h6>Teaching Experience</h6>
+                <p><%= props.teachingExperience %></p>
             </div><hr>
             <div class="info-item">
-                <h6>Highest Qualification</h6>
-                <p>Ph.D. (Computer Science and Engineering)</p>
+                <h6>Publications/Books/Patents</h6>
+                <p><%= props.publications_books_patents%></p>
             </div><hr>
             <div class="info-item">
-                <h6>Highest Qualification</h6>
-                <p>Ph.D. (Computer Science and Engineering)</p>
+                <h6>Seminar/Workshops/Confrences organised</h6>
+                <p><%= props.seminar_conference_workshop_organized %></p>
             </div><hr>
             <div class="info-item">
-                <h6>Highest Qualification</h6>
-                <p>Ph.D. (Computer Science and Engineering)</p>
+                <h6>Seminar/Workshops/Confrences attended</h6>
+                <p><%= props.seminar_conference_workshop_attended %></p>
             </div><hr>
             <div class="info-item">
-                <h6>Highest Qualification</h6>
-                <p>Ph.D. (Computer Science and Engineering)</p>
+                <h6>Felloships Awards</h6>
+                <p><%= props.fellowship_awards %></p>
             </div><hr>
+            <div class="info-item">
+                <h6>Memberships/Associations of Academic/Professional boards</h6>
+                <p><%= props.membership%></p>
+            </div><hr>
+            <div class="info-item">
+                <h6>Marsters Superwised</h6>
+                <p><%= props.masters_supervised %></p>
+            </div><hr>
+            <div class="info-item">
+                <h6>P.H.D. Superwised</h6>
+                <p><%= props.phd_supervised %></p>
+            </div><hr>
+            <div class="info-item">
+                <h6>Any other Information</h6>
+                <p><%= props.other_info%></p>
+            </div><hr>
+        </div>
+        
+        <div class="basic-card added-facutly-details">
+            <div class="basic-header" >
+                <h5>Experiences</h5>
+            </div>
+            <div class="col-10" style="text-align: left; width: 90%; margin-top: 15px; overflow: hidden;">
+                <table class="table" style="background-color: rgb(204, 204, 204); border-radius: 5px;">
+                    <thead>
+                      <tr>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Position</th>
+                        <th>Organisation</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <%if (experience.length >0){ %>
+                        <% experience.forEach(function(row){ %>
+                        <tr>
+                          <td><%= row.from %></td>
+                          <td><%= row.to %></td>
+                          <td><%= row.postion %></td>
+                          <td><%= row.organisation %></td>
+                        </tr>
+                        <% })}else{ %>
+                            <tr>
+                              <td colspan="6">No Record Found</td>
+                            </tr>
+                          <% } %>
+                      </tbody>
+                  </table>
+              </div>
         </div>
         <div class="basic-card added-facutly-details">
             <div class="basic-header" >
-                <h4>Publications</h4>
+                <h5>Experiences</h5>
             </div>
-            <div class="info-item" style="margin-top: 15px;">
-                <h6>Highest Qualification</h6>
-                <p>Ph.D. (Computer Science and Engineering)</p>
-            </div>
-            <div class="info-item">
-                <h6>Highest Qualification</h6>
-                <p>Ph.D. (Computer Science and Engineering)</p>
-            </div>
-            <div class="info-item">
-                <h6>Highest Qualification</h6>
-                <p>Ph.D. (Computer Science and Engineering)</p>
-            </div>
-        </div>
-        <div class="basic-card added-facutly-details">
-            <div class="basic-header" >
-                <h4>Experiences</h4>
-            </div>
-            <div class="info-item" style="margin-top: 15px;">
-                <h6>Highest Qualification</h6>
-                <p>Ph.D. (Computer Science and Engineering)</p>
-            </div>
-            <div class="info-item">
-                <h6>Highest Qualification</h6>
-                <p>Ph.D. (Computer Science and Engineering)</p>
-            </div>
-            <div class="info-item">
-                <h6>Highest Qualification</h6>
-                <p>Ph.D. (Computer Science and Engineering)</p>
+            <div class="basic-card basic-sub-card">
+                
             </div>
         </div>
     </div>

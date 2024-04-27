@@ -201,6 +201,11 @@ margin-right: 20px;
   margin-bottom: 10px;
   padding-top: 10px;
 }
+.basic-sub-card{
+  margin-top: 15px;
+  width:90%;
+  background-color: rgb(204, 204, 204);
+}
 .basic-card img{
   border-radius: 10%;
   max-width: 200px;
@@ -230,6 +235,7 @@ margin-right: 20px;
   width: 50%;
   padding : 0;
   margin: 0;
+  padding-right: 10px;
 }
 .added-facutly-details{
   display: flex;
@@ -239,14 +245,14 @@ margin-right: 20px;
   width: 90%;
 }
 .basic-header{
-  width: 92%;
+  width: 90%;
   height: auto;
   border-radius: 5px;
-  padding: 5px;
-  background-color: rgb(237, 155, 84);
+  padding: 15px;
+  background-color: rgb(255, 155, 84);
   color: white;
 }
-.basic-header h4{
+.basic-header h5{
   margin: 0px;
 }
 
@@ -972,6 +978,9 @@ table.center{
     margin-left: auto;
     margin-right: auto;
     width: 100%;
+}
+.table td{
+  max-width: 40%;
 }
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 .container4{
