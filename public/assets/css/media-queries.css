@@ -75,6 +75,9 @@
     height: auto;
     flex-direction: column;
   }
+  .basic-sub-card{
+    width: 90%;
+  }
   .profile_pic_resume{
     width: auto;
     height: auto;

@@ -54,6 +54,82 @@ liveReloadServer.server.once("connection", () => {
 app.use(connectLiveReload());
 
 
+
+//dummy faculty json data
+const props = {
+  name: 'Dr. Rohit Kumar Tiwari',
+  photo: 'http://www.mmmut.ac.in/News_content/IMGFaculty198.jpg',
+  resume: 'https://www.davpgcollege.in/docs/Dr_Rajesh_Kumar.pdf',
+  designation: 'Assistant Professor',
+  phone: '1234567890',
+  email: 'abs@gmail.com',
+  department: 'Department of Computer Science',
+  area_of_interest: 'Machine Learning, Data Science, Artificial Intelligence',
+  highest_qualification: 'Ph.D.',
+  teachingExperience: '10 years',
+  publications_books_patents: '10',
+  seminar_conference_workshop_organized: '20',
+  seminar_conference_workshop_attended: '20',
+  fellowship_awards: 'ministry of science and technology',
+  membership: 'IEEE, ACM',
+  masters_supervised: '10',
+  phd_supervised: '5',
+  other_info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien fermentum aliquam lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien fermentum aliquam.lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien fermentum aliquam.lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien fermentum aliquam.'
+};
+const experience =[
+  {
+    from: '2010',
+    to: '2015',
+    postion: 'Assistant Professor',
+    organisation: 'XYZ College'
+  },
+  {
+    from: '2015',
+    to: '2020',
+    postion: 'Associate Professor',
+    organisation: 'ABC College ' 
+  },
+  {
+    from: '2020',
+    to: 'Present',
+    postion: 'Professor',
+    organisation: 'DAVPG College'
+  }
+];
+const publications=[
+  {
+    title: 'Machine Learning',
+    dept: 'Computer Science',
+    category: 'Journal',
+    year: '2015',
+    month: '5',
+    indexing: 'SCI',
+    issn: '123456',
+    impact: '5.6'
+  },
+  {
+    title: 'Data Science',
+    dept: 'Computer Science',
+    category: 'Journal',
+    year: '2016',
+    month: '6',
+    indexing: 'SCI',
+    issn: '123456',
+    impact: '5.6'
+  },{
+    title: 'Artificial Intelligence',
+    dept: 'Computer Science',
+    category: 'Journal',
+    year: '2017',
+    month: '7',
+    indexing: 'SCI',
+    issn: '123456',
+    impact: '5.6'
+  }
+];
+
+
+
 //function for fetching header marquee data
 let header_marquee_data = undefined;
 function fetchMarqueeDetails(callback) {
@@ -88,77 +164,6 @@ const IsAuth=(req,res,next)=>{
 }
  
 app.get('/facutly_profile',(req,res)=>{
-  const props = {
-    name: 'Dr. Rohit Kumar Tiwari',
-    photo: 'http://www.mmmut.ac.in/News_content/IMGFaculty198.jpg',
-    resume: 'https://www.davpgcollege.in/docs/Dr_Rajesh_Kumar.pdf',
-    designation: 'Assistant Professor',
-    phone: '1234567890',
-    email: 'abs@gmail.com',
-    department: 'Department of Computer Science',
-    area_of_interest: 'Machine Learning, Data Science, Artificial Intelligence',
-    highest_qualification: 'Ph.D.',
-    teachingExperience: '10 years',
-    publications_books_patents: '10',
-    seminar_conference_workshop_organized: '20',
-    seminar_conference_workshop_attended: '20',
-    fellowship_awards: 'ministry of science and technology',
-    membership: 'IEEE, ACM',
-    masters_supervised: '10',
-    phd_supervised: '5',
-    other_info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien fermentum aliquam lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien fermentum aliquam.lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien fermentum aliquam.lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien fermentum aliquam.'
-  };
-  const experience =[
-    {
-      from: '2010',
-      to: '2015',
-      postion: 'Assistant Professor',
-      organisation: 'XYZ College'
-    },
-    {
-      from: '2015',
-      to: '2020',
-      postion: 'Associate Professor',
-      organisation: 'ABC College ' 
-    },
-    {
-      from: '2020',
-      to: 'Present',
-      postion: 'Professor',
-      organisation: 'DAVPG College'
-    }
-  ];
-  const publications=[
-    {
-      title: 'Machine Learning',
-      dept: 'Computer Science',
-      category: 'Journal',
-      year: '2015',
-      month: '5',
-      indexing: 'SCI',
-      issn: '123456',
-      impact: '5.6'
-    },
-    {
-      title: 'Data Science',
-      dept: 'Computer Science',
-      category: 'Journal',
-      year: '2016',
-      month: '6',
-      indexing: 'SCI',
-      issn: '123456',
-      impact: '5.6'
-    },{
-      title: 'Artificial Intelligence',
-      dept: 'Computer Science',
-      category: 'Journal',
-      year: '2017',
-      month: '7',
-      indexing: 'SCI',
-      issn: '123456',
-      impact: '5.6'
-    }
-  ];
   res.render('faculty_profile',{header_marquee_data,props,experience,publications});
 })
 
@@ -251,8 +256,11 @@ app.post('/login_auth', (req,res)=>{
           req.session.username = data[0]["Id"];
           res.render('admin_dashboard');
         }
-        else
-          res.render('faculty');
+        else if(data[0]["UserType"]=="faculty"){
+          req.session.isAuth = true;
+          req.session.username = data[0]["Id"];
+          res.render('faculty_dashboard',{props});
+        }
       }
     }
   });
@@ -327,6 +335,16 @@ app.get('/uploadNews', IsAuth, (req, res) => {
 app.get('/nonteaching', (req, res) => {
   res.render('nonteaching',{header_marquee_data});
 });
+app.get('/update_faculty_experience', IsAuth, (req, res) => {
+  res.render('update_faculty_experience',{props,experience});
+});
+app.get('/faculty_dashboard', IsAuth, (req, res) => {
+  res.render('faculty_dashboard',{props});
+});
+
+
+
+
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
       cb(null, 'public/docs');

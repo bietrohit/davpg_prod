@@ -150,6 +150,9 @@ margin-right: 20px;
   .corimg span{
     font-size: 1.2rem;
   }
+  .faculty-main-box{
+    width: 90%;
+  }
 }
 .gallery-cell img{
   width: 100vw;
@@ -202,8 +205,12 @@ margin-right: 20px;
   padding-top: 10px;
 }
 .basic-sub-card{
-  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /* margin-top: 15px; */
   width:90%;
+  padding: 15px 25px;
   background-color: rgb(204, 204, 204);
 }
 .basic-card img{
@@ -248,6 +255,7 @@ margin-right: 20px;
   width: 90%;
   height: auto;
   border-radius: 5px;
+  margin-bottom: 10px;
   padding: 15px;
   background-color: rgb(255, 155, 84);
   color: white;
@@ -255,6 +263,109 @@ margin-right: 20px;
 .basic-header h5{
   margin: 0px;
 }
+
+
+/* CSS FOR FACULTY_DASHBOARD PAGE */
+.faculty_menu a{
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+}
+.faculty_menu{
+  width: 100%;
+  background-color: rgb(255, 155, 84);
+  padding: 5px 10px;
+  border-radius: 5px;
+  box-shadow: 1px 2px 5px black;
+  margin-top: 2px;
+  margin-bottom: 10px;
+  display: none;
+  transition: max-height 1s ease;
+}
+.faculty_menu a:hover{
+  text-shadow: #202020 1px 1px 1px;
+}
+.faculty_menu_items{
+  padding-top: 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.faculty-nav-head{
+  width: 95%;
+  /* display: flex; */
+  text-align: center;
+}
+.update_details{
+  margin: 30px 10px;
+  padding-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: #e0dfdf;
+}
+.update_details form{
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  
+}
+.update_details form .btn{
+  padding: 10px;
+  width: 100%;
+  font-weight: bolder;
+}
+.form-group{
+  width: 100% ;
+  margin: 10px 0;
+}
+.form-group label{
+  font-weight: 500;
+}
+.update_details .basic-header{
+  width: 100%;
+  text-align: center;
+  color: black;
+  padding-left: 5%;
+}
+.update-faculty-photo img{
+  max-width: 200px;
+  max-height: 200px;
+  width: auto;
+  height: auto;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 3px 3px rgb(147, 143, 143);
+  
+}
+
+/* CSS FOR FACULTY_DASHBOARD NAVBAR */
+
+.faculty-main-box{
+  margin: 20px 10%;
+  width:  80%;
+  top-margin: 15px;
+}
+.dashboard-nav{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: rgb(255, 155, 84);
+  box-shadow: 1px 2px 5px black;
+}
+.dashboard-nav-icon i{
+  font-size: 25px;
+}
+.dashboard-nav-icon i:hover{
+  color: rgb(134, 132, 132);
+}
+
+
 
 
 
@@ -401,6 +512,11 @@ margin-right: 20px;
   width: auto;
 }
 
+.right-logos{
+  display: flex;
+  width: max-content;align-items:center;justify-content: center;
+}
+
 .logo img{
   width:60%;
 }
@@ -409,8 +525,14 @@ margin-right: 20px;
   .logo{
   display: block;
   }
+  .topcontain .right-logos{
+    display: none;
+  }
   .topcontain{
-  display: none;
+    justify-content: center;
+  }
+  .topcontain img{
+    width: 70%
   }
 }
 @media screen and (max-width:420px) {

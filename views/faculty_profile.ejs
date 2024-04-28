@@ -21,7 +21,7 @@
                 <div> <i class="fa fa-phone"></i> <%= props.phone %> </div><hr>
                 <div> <i class="fa fa-envelope"></i> <%= props.email %> </div><hr>
                 <div> <%= props.department %></div><hr>
-                <div><strong>Area of Interest: </strong><%= props.area_of_interest %></div><hr>
+                <div><strong>Area of Interest : </strong><%= props.area_of_interest %></div><hr>
             </div>
         </div>
         <div class="basic-card added-facutly-details">
@@ -72,7 +72,7 @@
             <div class="basic-header" >
                 <h5>Experiences</h5>
             </div>
-            <div class="col-10" style="text-align: left; width: 90%; margin-top: 15px; overflow: hidden;">
+            <div class="col-10" style="text-align: left; width: 90%; overflow: hidden;">
                 <table class="table" style="background-color: rgb(204, 204, 204); border-radius: 5px;">
                     <thead>
                       <tr>
@@ -104,9 +104,21 @@
             <div class="basic-header" >
                 <h5>Experiences</h5>
             </div>
-            <div class="basic-card basic-sub-card">
-                
-            </div>
+            <%if (publications.length >0){ %>
+                <% publications.forEach(function(publication){ %>
+                    <div class="basic-card basic-sub-card">
+                        <div><strong>Title : </strong><%= publication.title %></div>
+                        <div><strong>Department : </strong><%= publication.dept %></div>
+                        <div><strong>Category : </strong><%= publication.category %></div>
+                        <div><strong>Year : </strong><%= publication.year %></div>
+                        <div><strong>Month : </strong><%= publication.month %></div>
+                        <div><strong>Indexing : </strong><%= publication.indexing %></div>
+                        <div><strong>ISSN : </strong><%= publication.issn %></div>
+                        <div><strong>Impact factor : </strong><%= publication.impact %></div>
+                    </div>
+                <% })}else{ %>
+                    <div class="basic-card basic-sub-card">No records found.</div>
+                  <% } %>
         </div>
     </div>
 </div>

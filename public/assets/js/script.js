@@ -33,16 +33,9 @@ if (mediaQuery.matches) {
   });
   });
 }
-// else{
-//   $(function(){
-//     $('.dropdown').click(function() {
-//       $(this).children('div.dropdown-menu:not(.show)').addClass('show');
-//     }); 
-//     $('.dropdown').click(function() {
-//       $(this).children('div.dropdown-menu.show').removeClass('show');
-//     });
-//     $('.dropdown').click(function() {
-//       $(this).children('div.dropdown-menu.show').removeClass('show');
-//     });
-// });
-// }
+
+$(document).ready(function(){
+  $(".dashboard-nav-icon").click(function(){
+    $(".faculty_menu").toggle();
+  });
+});
