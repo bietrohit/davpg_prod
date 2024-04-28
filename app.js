@@ -96,6 +96,23 @@ const experiences =[
     organisation: 'DAVPG College'
   }
 ];
+const awards =[
+  {
+    title: 'Best Faculty Award',
+    year: '2015',
+    organisation: 'XYZ College'
+  },
+  {
+    title: 'Best Faculty Award',
+    year: '2016',
+    organisation: 'ABC College'
+  },
+  {
+    title: 'Best Faculty Award',
+    year: '2017',
+    organisation: 'DAVPG College'
+  }
+];
 const publications=[
   {
     title: 'Machine Learning',
@@ -329,11 +346,17 @@ app.get('/delete_news/:id/:file?', IsAuth,(req, res) => {
     }
   });
 });
-app.get('/faculty_experience_instance', (req, res) => {
-  res.render('partials/faculty_experience_instance',{experiences});
+app.get('/faculty_experience_instance',IsAuth, (req, res) => {
+  res.render('partials/faculty_experience_instance');
 });
-app.get('/faculty_experience_upload', (req, res) => {
+app.get('/faculty_experience_upload',IsAuth, (req, res) => {
   res.render('partials/faculty_experience_upload');
+});
+app.get('/faculty_awards_instance',IsAuth, (req, res) => {
+  res.render('partials/faculty_awards_instance');
+});
+app.get('/faculty_awards_upload',IsAuth, (req, res) => {
+  res.render('partials/faculty_awards_upload');
 });
 
 app.get('/uploadNews', IsAuth, (req, res) => {
@@ -344,6 +367,9 @@ app.get('/nonteaching', (req, res) => {
 });
 app.get('/update_faculty_experience', IsAuth, (req, res) => {
   res.render('update_faculty_experience',{props,experiences});
+});
+app.get('/update_faculty_awards', IsAuth, (req, res) => {
+  res.render('update_faculty_awards',{props,awards});
 });
 app.get('/faculty_dashboard', IsAuth, (req, res) => {
   res.render('faculty_dashboard',{props});

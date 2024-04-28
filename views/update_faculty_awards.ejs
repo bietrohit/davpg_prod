@@ -8,16 +8,16 @@
 
     <div class="update_details update_faculty_experience">
         <div class="basic-header">
-            <h5>View and Update Experiences</h5>
+            <h5>View and Update awards</h5>
         </div>
-        <% experiences.forEach(function(experience) { %>
+        <% awards.forEach(function(award) { %>
             <form action="/delete">
-                <%- include('./partials/faculty_experience_instance.ejs',{experience : experience}) -%>
+                <%- include('./partials/faculty_awards_instance.ejs',{award : award}) -%>
                 <button type="submit" class="btn btn-danger" style="width: auto;"><i class="fa-solid fa-trash"></i></button>
             </form>
         <% }) %>
         <div class="partial-container" id="partialContainer"></div>
-        <button class="action-btn" id="addButton">Add New Experience</button>
+        <button class="action-btn" id="addButton">Add New Award</button>
     </div>
 </div>
 <script>
@@ -30,7 +30,7 @@
           document.getElementById('partialContainer').innerHTML = xhr.responseText;
         }
       };
-      xhr.open('GET', '/faculty_experience_upload', true);
+      xhr.open('GET', '/faculty_awards_upload', true);
       xhr.send();
     });
   </script>
