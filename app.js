@@ -143,7 +143,9 @@ app.get('/contact', (req, res) => {
 app.get('/facultylogin', (req, res) => {
   res.render('faculty_admin_login',{send : header_marquee_data, header_marquee_data});
 });
-
+app.get('/addfaculty', (req, res) => {
+  res.render('addfaculty',{send : header_marquee_data, header_marquee_data});
+});
 app.get('/code_of_conduct', (req, res) => {
   res.render('code_of_conduct',{send : header_marquee_data, header_marquee_data});
 });
@@ -172,9 +174,6 @@ app.post('/login_auth', (req,res)=>{
       }
     }
   });
-});
-app.get('/addfaculty', IsAuth, (req, res) => {
-  res.render('addfaculty',{send : header_marquee_data, header_marquee_data});
 });
 app.get('/viewNews', IsAuth, (req, res) => {
   var sql='SELECT * FROM davpg.news_events_marquee order by Type, ID DESC;';
