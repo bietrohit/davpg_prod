@@ -74,82 +74,82 @@ app.get('/login', (req, res) => {
         res.render('login',{message:false});
 });
 app.get('/ba', (req, res) => {
-  res.render('ba');
+  res.render('ba',{send : header_marquee_data, header_marquee_data});
 });
 app.get('/ma', (req, res) => {
-  res.render('ma');
+  res.render('ma',{send : header_marquee_data, header_marquee_data});
 });
 app.get('/gbody', (req, res) => {
-  res.render('gbody');
+  res.render('gbody',{send : header_marquee_data, header_marquee_data});
 });
 app.get('/syllabus', (req, res) => {
-  res.render('syllabus');
+  res.render('syllabus',{send : header_marquee_data, header_marquee_data});
 });
 app.get('/launch', (req, res) => {
-  res.render('launch');
+  res.render('launch',{send : header_marquee_data, header_marquee_data});
 });
 app.get('/timetable', (req, res) => {
-  res.render('timetable');
+  res.render('timetable',{send : header_marquee_data, header_marquee_data});
 });
 app.get('/alumniassoc', (req, res) => {
-  res.render('alumniassoc');
+  res.render('alumniassoc',{send : header_marquee_data, header_marquee_data});
 });
 app.get('/bsc', (req, res) => {
-  res.render('bsc');
+  res.render('bsc',{send : header_marquee_data, header_marquee_data});
 });
 app.get('/bcom', (req, res) => {
-  res.render('bcom');
+  res.render('bcom',{send : header_marquee_data, header_marquee_data});
 });
 app.get('/p_message', (req, res) => {
-  res.render('p_message');
+  res.render('p_message',{send : header_marquee_data, header_marquee_data});
 });
 app.get('/vission', (req, res) => {
-  res.render('vission');
+  res.render('vission',{send : header_marquee_data, header_marquee_data});
 });
 app.get('/history', (req, res) => {
-  res.render('history');
+  res.render('history',{send : header_marquee_data, header_marquee_data});
 });
 app.get('/practorial', (req, res) => {
-  res.render('practorial');
+  res.render('practorial',{send : header_marquee_data, header_marquee_data});
 });
 app.get('/alumnireg', (req, res) => {
-  res.render('alumnireg',{error:false});
+  res.render('alumnireg',{error:false, header_marquee_data});
 });
 app.get('/grievance', (req, res) => {
-  res.render('grievance');
+  res.render('grievance',{send : header_marquee_data, header_marquee_data});
 });
 app.get('/department', (req, res) => {
   res.render('department',{send : header_marquee_data, header_marquee_data});
 });
 app.get('/research', (req, res) => {
-  res.render('research');
+  res.render('research',{send : header_marquee_data, header_marquee_data});
 });
 app.get('/literary', (req, res) => {
-  res.render('literary');
+  res.render('literary',{send : header_marquee_data, header_marquee_data});
 });
 app.get('/career', (req, res) => {
-  res.render('career');
+  res.render('career',{send : header_marquee_data, header_marquee_data});
 });
 app.get('/sexual', (req, res) => {
-  res.render('sexual');
+  res.render('sexual',{send : header_marquee_data, header_marquee_data});
 });
 app.get('/admission', (req, res) => {
-  res.render('admission');
+  res.render('admission',{send : header_marquee_data, header_marquee_data});
 });
 app.get('/contact', (req, res) => {
-  res.render('contact');
+  res.render('contact',{send : header_marquee_data, header_marquee_data});
 });
 app.get('/facultylogin', (req, res) => {
-  res.render('faculty_admin_login');
+  res.render('faculty_admin_login',{send : header_marquee_data, header_marquee_data});
 });
 app.get('/addfaculty', (req, res) => {
-  res.render('addfaculty');
+  res.render('addfaculty',{send : header_marquee_data, header_marquee_data});
 });
 app.get('/code_of_conduct', (req, res) => {
-  res.render('code_of_conduct');
+  res.render('code_of_conduct',{send : header_marquee_data, header_marquee_data});
 });
 app.get('/m_message', (req, res) => {
-  res.render('m_message');
+  res.render('m_message',{send : header_marquee_data, header_marquee_data});
 });
 app.post('/login_auth', (req,res)=>{
   var username=req.body.uname;
@@ -166,10 +166,10 @@ app.post('/login_auth', (req,res)=>{
         if(data[0]["UserType"]=="Admin" || data[0]["UserType"]=="admin" ){
           req.session.isAuth = true;
           req.session.username = data[0]["Id"];
-          res.render('admin_dashboard');
+          res.render('admin_dashboard',{send : header_marquee_data, header_marquee_data});
         }
         else
-          res.render('faculty');
+          res.render('faculty',{send : header_marquee_data, header_marquee_data});
       }
     }
   });
@@ -181,7 +181,7 @@ app.get('/viewNews', IsAuth, (req, res) => {
       throw err;
     } 
     else{
-      res.render('viewNews',{send:data});
+      res.render('viewNews',{send:data,header_marquee_data});
     }
   });
 });
@@ -203,7 +203,7 @@ app.get('/viewallevent', (req, res) => {
       throw err;
     } 
     else{
-      res.render('viewallevent',{send:data});
+      res.render('viewallevent',{send:data, header_marquee_data});
     }
   });
 });
@@ -214,7 +214,7 @@ app.get('/viewalumni', IsAuth,(req, res) => {
       throw err;
     } 
     else{
-      res.render('viewalumni',{send:data});
+      res.render('viewalumni',{send:data, header_marquee_data});
     }
   });
 });
@@ -239,10 +239,10 @@ app.get('/delete_news/:id/:file?', IsAuth,(req, res) => {
   });
 });
 app.get('/uploadNews', IsAuth, (req, res) => {
-  res.render('uploadNews');
+  res.render('uploadNews',{send : header_marquee_data, header_marquee_data});
 });
 app.get('/nonteaching', (req, res) => {
-  res.render('nonteaching');
+  res.render('nonteaching',{send : header_marquee_data, header_marquee_data});
 });
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -276,7 +276,7 @@ app.post('/uploadnews', upload.single('myfile'), (req, res, next) => {
             throw err;
           } 
           else{
-            res.redirect(302, '/viewNews');
+            res.redirect(302, '/viewNews',{send : header_marquee_data, header_marquee_data});
             }
         });
   } catch (error) {
@@ -284,7 +284,7 @@ app.post('/uploadnews', upload.single('myfile'), (req, res, next) => {
   }
 });
 app.get('/addfaculty', IsAuth, (req, res) => {
-  res.render('addfaculty');
+  res.render('addfaculty',{send : header_marquee_data, header_marquee_data});
 });
 app.post('/addfaculty', (req, res) => {
   const name = req.body.name;
@@ -344,7 +344,7 @@ app.post('/reg_sub', upload.single('photo'), (req, res, next)=>{
             throw err;
           } 
           else{
-            res.redirect(302,'/alumnireg');
+            res.redirect(302,'/alumnireg',{send : header_marquee_data, header_marquee_data});
             }
     });
   }catch (error) {
