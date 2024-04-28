@@ -1,0 +1,138 @@
+<style>
+    @media only screen and (max-width: 600px) {
+  .rightpart {
+    display: none;
+  }
+  
+  .leftpart {
+    width: 100%;
+  }
+}
+</style>
+
+<%- include('./partials/header') -%>
+    <div class="departmentname" style="margin-top: 30px; margin-bottom: 30px; ">
+        <h1 style="justify-items: center; text-align: center; font-weight: 700;">Department of Arts</h1>
+    </div>
+    <div class="containerdepartment" style="display: flex ; margin-left: 80px;">
+        <div class="leftpart" style="flex-basis: 160%; margin-right: 40px;">
+            <div class="carousall" style="margin-bottom: 50px;">
+                <div class="carousel-wrapper">
+                    <div class="carouselBox">
+                        <img class="carousel__photo initial" src="http://www.mmmut.ac.in/images/CS-Banner-01.jpg" />
+                        <img class="carousel__photo" src="/assets/img/bg2.jpg" />
+                        <img class="carousel__photo" src="/assets/img/bg3.JPG" />
+                        <img class="carousel__photo" src="/assets/img/bg4.JPG" />
+                        <img class="carousel__photo" src="/assets/img/bg3.JPG" />
+                        <div class="carousel__button--next"></div>
+                        <div class="carousel__button--prev"></div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+            <div class="csed-section">
+                <div style=" background-color: rgb(255, 106, 0); width: 100%;">
+                    <h3 style=" font-weight: 600; color: azure; margin-left: 30px;">Department of Arts</h3>
+                </div>
+                <div class="vision">
+                    <h4>Vision : </h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec justo euismod, tincidunt libero
+                        vel,
+                        aliquam nunc. Nullam euismod, urna vel tincidunt tincidunt, justo nisl dignissim justo, vel
+                        lacinia
+                        odio libero id libero. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos modi
+                        eligendi voluptate quibusdam facilis officiis quisquam tenetur at temporibus atque natus numquam
+                        voluptatem, consequuntur voluptas esse laboriosam cupiditate quidem! Culpa, quas nesciunt modi
+                        illo ad perspiciatis adipisci aperiam minima animi eius consequuntur doloremque deserunt
+                        corporis sapiente a et minus quis recusandae nulla nihil praesentium? Fugit in quia deserunt?
+                        Beatae, nemo!</p>
+
+                </div>
+                <div class="mission">
+                    <h4>Mission:</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec justo euismod, tincidunt libero
+                        vel,
+                        aliquam nunc. Nullam euismod, urna vel tincidunt tincidunt, justo nisl dignissim justo, vel
+                        lacinia
+                        odio libero id libero. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos modi
+                        eligendi
+                        voluptate quibusdam facilis officiis quisquam tenetur at temporibus atque natus numquam
+                        voluptatem,
+                        consequuntur voluptas esse laboriosam cupiditate quidem! Culpa, quas nesciunt modi illo ad
+                        perspiciatis adipisci aperiam minima animi eius consequuntur doloremque deserunt corporis
+                        sapiente a
+                        et minus quis recusandae nulla nihil praesentium? Fugit in quia deserunt? Beatae, nemo!</p>
+                </div>
+                <div style=" background-color: rgb(255, 106, 0); width: 100%;">
+                    <h3 style=" font-weight: 600; color: azure; margin-left: 30px;">About Department of Art</h3>
+                </div>
+                <div class="vision">
+                    <h4>Vision : </h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec justo euismod, tincidunt libero
+                        vel,
+                        aliquam nunc. Nullam euismod, urna vel tincidunt tincidunt, justo nisl dignissim justo, vel
+                        lacinia
+                        odio libero id libero. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos modi
+                        eligendi voluptate quibusdam facilis officiis quisquam tenetur at temporibus atque natus numquam
+                        voluptatem, consequuntur voluptas esse laboriosam cupiditate quidem! Culpa, quas nesciunt modi
+                        illo ad perspiciatis adipisci aperiam minima animi eius consequuntur doloremque deserunt
+                        corporis sapiente a et minus quis recusandae nulla nihil praesentium? Fugit in quia deserunt?
+                        Beatae, nemo!</p>
+
+                </div>
+                <div class="mission">
+                    <h4>Mission:</h4>
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed nec justo euismod, tincidunt libero
+                        vel,
+                        aliquam nunc. Nullam euismod, urna vel tincidunt tincidunt, justo nisl dignissim justo, vel
+                        lacinia
+                        odio libero id libero. Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos modi
+                        eligendi
+                        voluptate quibusdam facilis officiis quisquam tenetur at temporibus atque natus numquam
+                        voluptatem,
+                        consequuntur voluptas esse laboriosam cupiditate quidem! Culpa, quas nesciunt modi illo ad
+                        perspiciatis adipisci aperiam minima animi eius consequuntur doloremque deserunt corporis
+                        sapiente a
+                        et minus quis recusandae nulla nihil praesentium? Fugit in quia deserunt? Beatae, nemo!</p>
+                </div>
+
+            </div>
+
+
+        </div>
+        <div class="rightpart" style="flex-basis: 60%; margin-right: 40px;">
+            <div class="departmentNews">
+
+                <div style=" background-color: rgb(255, 106, 0); width: 100%; text-align: center;">
+                    <h3 style=" font-weight: 600; color: azure;">Department News</h3>
+                </div>
+                <div class="items-body">
+                    <marquee direction="up" loop="infinite" scrollamount="2" onmouseover="this.stop();"
+                        onmouseout="this.start();">
+                        <% for(var i=0; i<send.length; i++){ %>
+                            <% if(send[i].Type=="News" ){ %>
+                                <% if(send[i].Link !="" ){ %>
+                                    <a href="/docs/<%= send[i].Link %>" target="_blank">
+                                        <% } %>
+                                            <div class="items-body-content"
+                                                style="text-decoration: none;color: blue; font-weight: 400;">
+                                                <span><img src="/assets/img/new.gif"></img>
+                                                    <%= send[i].Title %>
+                                                </span>
+                                            </div>
+                                    </a>
+                                    <% } %>
+                                        <% } %>
+                    </marquee>
+                </div>
+                <a href="/viewallnews"
+                    style="float: right;text-decoration: none;color: rgb(173, 46, 0);background-color: #f6931d;border-radius:30px">Read
+                    more</a>
+            </div>
+
+        </div>
+        </div>
+        <%- include('./partials/footer') -%>

@@ -33,6 +33,12 @@
     height: auto;
     grid-template-rows: auto auto;
   }
+  .carousall{
+    grid-template-columns: 1fr;
+    max-height: initial;
+    height: auto;
+    grid-template-rows: auto auto;
+  }
 
   .profileCard {
     width: auto;

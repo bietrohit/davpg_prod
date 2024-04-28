@@ -118,6 +118,9 @@ app.get('/alumnireg', (req, res) => {
 app.get('/grievance', (req, res) => {
   res.render('grievance');
 });
+app.get('/department', (req, res) => {
+  res.render('department',{send : header_marquee_data, header_marquee_data});
+});
 app.get('/research', (req, res) => {
   res.render('research');
 });
@@ -189,7 +192,7 @@ app.get('/viewallnews', (req, res) => {
       throw err;
     } 
     else{ 
-      res.render('viewallnews',{send:data});
+      res.render('viewallnews',{send:data,header_marquee_data });
     }
   });
 });
