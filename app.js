@@ -7,6 +7,7 @@ const path = require('path');
 const axios = require('axios');
 const fs = require('fs');
 const cors=require("cors");
+const secrets = require('./secrets');
 const session = require('express-session');
 const mysqlStore = require('express-mysql-session')(session);
 const options ={
@@ -27,14 +28,14 @@ app.use(session({
   resave: false,
   saveUninitialized: false,
   store: sessionStore,
-  secret: 'dfr324567u6uhbfgfgh8iijmn',
+  secret: secrets.sessionSecret, 
   cookie: {
       httpOnly: true,
       maxAge: TWO_HOURS,
       sameSite: true,
       secure: false
   }
-}))
+}));
 app.use(express.static('public'));
 var bodyParser=require("body-parser");
 const con = require('./db');
@@ -142,9 +143,7 @@ app.get('/contact', (req, res) => {
 app.get('/facultylogin', (req, res) => {
   res.render('faculty_admin_login',{send : header_marquee_data, header_marquee_data});
 });
-app.get('/addfaculty', (req, res) => {
-  res.render('addfaculty',{send : header_marquee_data, header_marquee_data});
-});
+
 app.get('/code_of_conduct', (req, res) => {
   res.render('code_of_conduct',{send : header_marquee_data, header_marquee_data});
 });
@@ -173,6 +172,9 @@ app.post('/login_auth', (req,res)=>{
       }
     }
   });
+});
+app.get('/addfaculty', IsAuth, (req, res) => {
+  res.render('addfaculty',{send : header_marquee_data, header_marquee_data});
 });
 app.get('/viewNews', IsAuth, (req, res) => {
   var sql='SELECT * FROM davpg.news_events_marquee order by Type, ID DESC;';
