@@ -339,15 +339,49 @@ margin-right: 20px;
   overflow: hidden;
   border-radius: 10px;
   box-shadow: 3px 3px rgb(147, 143, 143);
-  
 }
+
+.update_faculty_experience form{
+  margin-top: 10px;
+  background-color: #cecdcd;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  column-gap: 5%;
+  border: 1px solid #ccc;
+}
+
+.action-btn{
+  width: 95%;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+  background-color: rgb(59, 171, 59);
+  border: 0px;
+  font-weight: 500;
+}
+.action-btn:hover{
+  background-color: green;
+  box-shadow: 1px 2px 5px black;
+}
+
+.partial-container{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
 
 /* CSS FOR FACULTY_DASHBOARD NAVBAR */
 
 .faculty-main-box{
   margin: 20px 10%;
   width:  80%;
-  top-margin: 15px;
+  margin-top: 15px;
 }
 .dashboard-nav{
   display: flex;
@@ -364,9 +398,6 @@ margin-right: 20px;
 .dashboard-nav-icon i:hover{
   color: rgb(134, 132, 132);
 }
-
-
-
 
 
 /* cell number */
@@ -521,18 +552,25 @@ margin-right: 20px;
   width:60%;
 }
 
+.mobile-logo{
+  display: none;
+}
+
 @media screen and (max-width:989px) {
   .logo{
   display: block;
   }
-  .topcontain .right-logos{
+  .topcontain{
     display: none;
   }
-  .topcontain{
-    justify-content: center;
+  .mobile-logo{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content:center;
   }
-  .topcontain img{
-    width: 70%
+  .mobile-logo img{
+    width: 70%;
   }
 }
 @media screen and (max-width:420px) {

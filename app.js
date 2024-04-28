@@ -76,23 +76,23 @@ const props = {
   phd_supervised: '5',
   other_info: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien fermentum aliquam lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien fermentum aliquam.lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien fermentum aliquam.lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed ut purus eget sapien fermentum aliquam.'
 };
-const experience =[
+const experiences =[
   {
     from: '2010',
     to: '2015',
-    postion: 'Assistant Professor',
+    position: 'Assistant Professor',
     organisation: 'XYZ College'
   },
   {
     from: '2015',
     to: '2020',
-    postion: 'Associate Professor',
+    position: 'Associate Professor',
     organisation: 'ABC College ' 
   },
   {
     from: '2020',
     to: 'Present',
-    postion: 'Professor',
+    position: 'Professor',
     organisation: 'DAVPG College'
   }
 ];
@@ -164,7 +164,7 @@ const IsAuth=(req,res,next)=>{
 }
  
 app.get('/facutly_profile',(req,res)=>{
-  res.render('faculty_profile',{header_marquee_data,props,experience,publications});
+  res.render('faculty_profile',{header_marquee_data,props,experiences,publications});
 })
 
 app.get('/login', (req, res) => {
@@ -329,6 +329,13 @@ app.get('/delete_news/:id/:file?', IsAuth,(req, res) => {
     }
   });
 });
+app.get('/faculty_experience_instance', (req, res) => {
+  res.render('partials/faculty_experience_instance',{experiences});
+});
+app.get('/faculty_experience_upload', (req, res) => {
+  res.render('partials/faculty_experience_upload');
+});
+
 app.get('/uploadNews', IsAuth, (req, res) => {
   res.render('uploadNews',{header_marquee_data});
 });
@@ -336,7 +343,7 @@ app.get('/nonteaching', (req, res) => {
   res.render('nonteaching',{header_marquee_data});
 });
 app.get('/update_faculty_experience', IsAuth, (req, res) => {
-  res.render('update_faculty_experience',{props,experience});
+  res.render('update_faculty_experience',{props,experiences});
 });
 app.get('/faculty_dashboard', IsAuth, (req, res) => {
   res.render('faculty_dashboard',{props});

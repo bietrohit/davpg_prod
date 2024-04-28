@@ -29,7 +29,11 @@
         <form action="/upload">
             <div class="form-group">
                 <label for="photo">Photo</label>
-                <input type="text" class="form-control" id="photo" value="<%= props.photo%>">
+                <input type="file" class="form-control" id="photo" value="<%= props.photo%>">
+            </div>
+            <div class="form-group">
+                <label for="resume">Resume</label>
+                <input type="file" class="form-control" id="resume" value="<%= props.resume%>">
             </div>
             <div class="form-group">
                 <label for="name">Name</label>
@@ -50,10 +54,6 @@
             <div class="form-group">
                 <label for="designation">Designation</label>
                 <input type="text" class="form-control" id="designation" value="<%= props.designation%>" readonly>
-            </div>
-            <div class="form-group">
-                <label for="resume">Resume</label>
-                <input type="text" class="form-control" id="resume" value="<%= props.resume%>">
             </div>
             <div class="form-group">
                 <label for="highest_qualification">Highest Qualification</label>
