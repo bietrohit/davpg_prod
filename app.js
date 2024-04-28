@@ -312,8 +312,8 @@ app.post('/addfaculty', (req, res) => {
       }
 
       console.log('Faculty data saved successfully');
-      // res.status(200).json({ message: 'Faculty data saved successfully' });
-      res.redirect(302,'/addfaculty');
+      res.status(200).json({ message: 'Faculty data saved successfully' });
+      res.redirect('/addfaculty');
     });
   });
 });
@@ -348,6 +348,50 @@ app.post('/reg_sub', upload.single('photo'), (req, res, next)=>{
     console.error(error);
   }
 });
+
+// app.post('/updateFaculty', (req, res) => {
+//   // Extract data from request body
+//   const { id, newData } = req.body;
+
+//   // Check if data already exists for the given ID
+//   const query = 'SELECT * FROM faculty, WHERE id = ?';
+//   connection.query(query, [id], (err, results) => {
+//     if (err) {
+//       console.error('Error checking data:', err);
+//       res.status(500).json({ error: 'An error occurred while checking data' });
+//       return;
+//     }
+
+//     if (results.length === 0) {
+//       // No existing data, insert new data
+//       const insertQuery = 'INSERT INTO your_table (id, column1, column2, ...) VALUES (?, ?, ?, ...)';
+//       const params = [id, newData.column1, newData.column2, ...]; // Adjust as per your columns
+//       connection.query(insertQuery, params, (err, result) => {
+//         if (err) {
+//           console.error('Error inserting data:', err);
+//           res.status(500).json({ error: 'An error occurred while inserting data' });
+//           return;
+//         }
+//         res.status(200).json({ message: 'Data inserted successfully' });
+//       });
+//     } else {
+//       // Existing data found, update data
+//       const updateQuery = 'UPDATE your_table SET column1 = ?, column2 = ?, ... WHERE id = ?';
+//       const params = [newData.column1, newData.column2, ..., id]; // Adjust as per your columns
+//       connection.query(updateQuery, params, (err, result) => {
+//         if (err) {
+//           console.error('Error updating data:', err);
+//           res.status(500).json({ error: 'An error occurred while updating data' });
+//           return;
+//         }
+//         res.status(200).json({ message: 'Data updated successfully' });
+//       });
+//     }
+//   });
+// });
+
+
+
 app.get('/logout', (req, res, next) => {
   req.session.destroy((err) => {
     if (err) throw err;

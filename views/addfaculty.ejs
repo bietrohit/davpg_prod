@@ -42,10 +42,14 @@ select {
       background-color: #f2f2f2;
     }
     
+    
     /* Form container */
     .form-container {
       /* background-color: #995353; */
       padding: 40px;
+      /* padding-top: 40px; */
+      /* margin-top: 80px; */
+      /* margin-bottom: 80px; */
       /* border-radius: 10px; */
       /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
       /* transition: box-shadow 0.3s; */
@@ -66,8 +70,16 @@ select {
       border-radius: 5px; 
       box-sizing: border-box;
     }
-    
-    
+    .option-menu{
+      display: flex;
+      justify-content:space-between
+    }
+    .dpt{
+      display: flex;
+
+
+      flex-direction: column;
+    }
     /* Submit button */
     .submit-btn {
       background-color: #4CAF50;
@@ -109,24 +121,36 @@ select {
           <input type="text" placeholder="Enter Username" name="email" required>
           <label for="psw"><b>Password</b></label>
           <input type="password" placeholder="Enter Password" name="psw" required>
-          <label for="Department" style="font-weight: 600;">Department</label>
-            <select name="dept" id="dept">
+         <div class="option-menu"> <div><div> <label for="Department" style="font-weight: 600;">Department</label></div>
+            <div>
+              <select name="dept" id="dept">
               <option value="arts">Arts</option>
               <option value="commerce">Commerce</option>
               <option value="education">Education</option>
               <option value="science">Science</option>
+            </div>
+            
             </select>
+          </div>
+          </div>
             <!-- <input type="submit" value="Submit" /> -->
+           <div>
             <label for="designation" style="font-weight: 600;">Designation</label>
             <select name="designation" id="designation">
               <option value="proffesor">Proffesor</option>
               <option value="assitant proffesor">Assitant Proffesor</option>
               <option value="associate proffesor">Associate Proffesor</option>
             </select>
+          </div>
+          </div>
     
           <button type="submit" class="submit-btn">Submit</button>
         </form>
       </div>
     </div>
+    </body>
+
     
 <%- include('./partials/footer') -%>
+</html>
+
