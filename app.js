@@ -113,6 +113,25 @@ const awards =[
     organisation: 'DAVPG College'
   }
 ];
+const qualifications =[{
+  degree: 'Ph.D.',
+  specialisation: 'Machine Learning',
+  institute: 'IIT Kanpur',
+  year: '2015'
+  },
+  {
+    degree: 'M.Tech',
+    specialisation: 'Data Science',
+    institute: 'IIT Kanpur',
+    year: '2010'
+  },
+  {
+    degree: 'B.Tech',
+    specialisation: 'Computer Science',
+    institute: 'IIT Kanpur',
+    year: '2008'
+  }
+];
 const publications=[
   {
     title: 'Machine Learning',
@@ -358,6 +377,18 @@ app.get('/faculty_awards_instance',IsAuth, (req, res) => {
 app.get('/faculty_awards_upload',IsAuth, (req, res) => {
   res.render('partials/faculty_awards_upload');
 });
+app.get('/faculty_qualifications_instance',IsAuth, (req, res) => {
+  res.render('partials/faculty_qualifications_instance');
+});
+app.get('/faculty_qualifications_upload',IsAuth, (req, res) => {
+  res.render('partials/faculty_qualifications_upload');
+});
+app.get('/faculty_publications_instance',IsAuth, (req, res) => {
+  res.render('partials/faculty_publications_instance');
+});
+app.get('/faculty_publications_upload',IsAuth, (req, res) => {
+  res.render('partials/faculty_publications_upload');
+});
 
 app.get('/uploadNews', IsAuth, (req, res) => {
   res.render('uploadNews',{header_marquee_data});
@@ -370,6 +401,12 @@ app.get('/update_faculty_experience', IsAuth, (req, res) => {
 });
 app.get('/update_faculty_awards', IsAuth, (req, res) => {
   res.render('update_faculty_awards',{props,awards});
+});
+app.get('/update_faculty_qualifications', IsAuth, (req, res) => {
+  res.render('update_faculty_qualifications',{props,qualifications});
+});
+app.get('/update_faculty_publications', IsAuth, (req, res) => {
+  res.render('update_faculty_publications',{props,publications});
 });
 app.get('/faculty_dashboard', IsAuth, (req, res) => {
   res.render('faculty_dashboard',{props});

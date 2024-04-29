@@ -1,0 +1,37 @@
+<%- include('./partials/admin_header') -%>
+<head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+ </head>
+
+<div class="faculty-main-box">
+    <%- include('./partials/faculty_dashboard_nav') %>
+
+    <div class="update_details update_faculty_experience">
+        <div class="basic-header">
+            <h5>View and Update Publications</h5>
+        </div>
+        <% publications.forEach(function(publication) { %>
+            <form action="/delete">
+                <%- include('./partials/faculty_publications_instance.ejs',{publication : publication}) -%>
+                <button type="submit" class="btn btn-danger" style="width: auto;"><i class="fa-solid fa-trash"></i></button>
+            </form>
+        <% }) %>
+        <div class="partial-container" id="partialContainer"></div>
+        <button class="action-btn" id="addButton">Add New Publication</button>
+    </div>
+</div>
+<script>
+    document.getElementById('addButton').addEventListener('click', function() {
+      // Make an AJAX request to fetch the partial content
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          // Insert the fetched partial content into the container
+          document.getElementById('partialContainer').innerHTML = xhr.responseText;
+        }
+      };
+      xhr.open('GET', '/faculty_publications_upload', true);
+      xhr.send();
+    });
+  </script>
+<%- include('./partials/footer') -%>

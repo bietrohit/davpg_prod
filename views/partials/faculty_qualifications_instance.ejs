@@ -1,0 +1,26 @@
+<style>
+    .qualification-instance {
+        /* border: 1px solid #ccc; */
+        padding: 10px;
+        margin-bottom: 10px;
+        width: 80%;
+    }
+</style>
+<div class="qualification-instance">
+    <div class="form-group">
+        <label for="degree">Degree</label>
+        <input readonly type="text" class="form-control" id="degree" value="<%= qualification.degree%>">
+    </div>
+    <div class="form-group">
+        <label for="specialisation">Specialisation</label>
+        <input readonly type="text" class="form-control" id="specialisation" value="<%= qualification.specialisation%>">
+    </div>
+    <div class="form-group">
+        <label for="institute">Institute</label>
+        <input readonly type="text" class="form-control" id="institute" value="<%= qualification.institute%>">
+    </div>
+    <div class="form-group">
+        <label for="year">Year</label>
+        <input readonly type="text" class="form-control" id="year" value="<%= qualification.year%>">
+    </div>
+</div>
