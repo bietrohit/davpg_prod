@@ -11,7 +11,7 @@
             <h5>View and Update Publications</h5>
         </div>
         <% publications.forEach(function(publication) { %>
-            <form action="/delete">
+            <form action="/delete_faculty_publication/<%= publication.id %>" method="post">
                 <%- include('./partials/faculty_publications_instance.ejs',{publication : publication}) -%>
                 <button type="submit" class="btn btn-danger" style="width: auto;"><i class="fa-solid fa-trash"></i></button>
             </form>

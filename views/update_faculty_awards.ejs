@@ -11,7 +11,7 @@
             <h5>View and Update awards</h5>
         </div>
         <% awards.forEach(function(award) { %>
-            <form action="/delete">
+            <form action="/delete_faculty_award/<%= award.id %>" method="post">
                 <%- include('./partials/faculty_awards_instance.ejs',{award : award}) -%>
                 <button type="submit" class="btn btn-danger" style="width: auto;"><i class="fa-solid fa-trash"></i></button>
             </form>

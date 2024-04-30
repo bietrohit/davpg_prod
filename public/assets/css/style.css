@@ -221,8 +221,19 @@ margin-right: 20px;
   height: auto;
   box-shadow: 3px 3px rgb(147, 143, 143);
 }
-.resume_box span{
+.resume_box a{
+  border: 1px solid #ccc;
+  width: 100%;
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
   box-shadow: 3px 3px rgb(147, 143, 143);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
 }
 .basic_details{
   height: 350px;
@@ -341,6 +352,25 @@ margin-right: 20px;
   box-shadow: 3px 3px rgb(147, 143, 143);
 }
 
+.update-faculty-resume{
+  margin-top: 20px;
+  /* width: 30px; */
+}
+.update-faculty-resume a{
+  border: 1px solid #ccc;
+  width: 100%;
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+  padding: 10px;
+  border-radius: 5px;
+  box-shadow: 3px 3px rgb(147, 143, 143);
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
 .update_faculty_experience form{
   margin-top: 10px;
   background-color: #cecdcd;
@@ -352,6 +382,8 @@ margin-right: 20px;
   column-gap: 5%;
   border: 1px solid #ccc;
 }
+
+
 
 .action-btn{
   width: 95%;
@@ -1134,14 +1166,23 @@ margin-right: 20px;
   padding-top: 5px;
   padding-bottom: 5px;
 }
-table.center{
-    margin-left: auto;
-    margin-right: auto;
-    width: 100%;
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
 }
-.table td{
-  max-width: 40%;
+
+th, td {
+  width: 33.33%;
+  padding: 8px; 
+  border: 1px solid #ddd;
 }
+th {
+  background-color: #f2f2f2;
+  text-align: left; 
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
 .container4{
   max-width: 700px;

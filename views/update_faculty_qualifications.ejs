@@ -11,7 +11,7 @@
             <h5>View and Update qualifications</h5>
         </div>
         <% qualifications.forEach(function(qualification) { %>
-            <form action="/delete">
+            <form action="/delete_faculty_qualification/<%= qualification.id%>" method="post">
                 <%- include('./partials/faculty_qualifications_instance.ejs',{qualification : qualification}) -%>
                 <button type="submit" class="btn btn-danger" style="width: auto;"><i class="fa-solid fa-trash"></i></button>
             </form>

@@ -12,7 +12,7 @@ const options ={
   password: "root",
   user: "root",
   database: "davpg",
-  host: "127.0.0.1",
+  host: "127.0.0.1", 
   port: 3306,
   createDatabaseTable: true
 }
@@ -45,6 +45,7 @@ var livereload = require("livereload");
 var connectLiveReload = require("connect-livereload");
 const { isStringObject } = require('util/types');
 const { title } = require('process');
+const { error } = require('console');
 const liveReloadServer = livereload.createServer();
 liveReloadServer.server.once("connection", () => {
   setTimeout(() => {
@@ -56,7 +57,7 @@ app.use(connectLiveReload());
 
 
 //dummy faculty json data
-const props = {
+let props = {
   name: 'Dr. Rohit Kumar Tiwari',
   photo: 'http://www.mmmut.ac.in/News_content/IMGFaculty198.jpg',
   resume: 'https://www.davpgcollege.in/docs/Dr_Rajesh_Kumar.pdf',
@@ -66,7 +67,7 @@ const props = {
   department: 'Department of Computer Science',
   area_of_interest: 'Machine Learning, Data Science, Artificial Intelligence',
   highest_qualification: 'Ph.D.',
-  teachingExperience: '10 years',
+  teaching_experience: '10 years',
   publications_books_patents: '10',
   seminar_conference_workshop_organized: '20',
   seminar_conference_workshop_attended: '20',
@@ -81,36 +82,36 @@ const experiences =[
     from: '2010',
     to: '2015',
     position: 'Assistant Professor',
-    organisation: 'XYZ College'
+    organization: 'XYZ College'
   },
   {
     from: '2015',
     to: '2020',
     position: 'Associate Professor',
-    organisation: 'ABC College ' 
+    organization: 'ABC College ' 
   },
   {
     from: '2020',
     to: 'Present',
     position: 'Professor',
-    organisation: 'DAVPG College'
+    organization: 'DAVPG College'
   }
 ];
 const awards =[
   {
     title: 'Best Faculty Award',
     year: '2015',
-    organisation: 'XYZ College'
+    organization: 'XYZ College'
   },
   {
     title: 'Best Faculty Award',
     year: '2016',
-    organisation: 'ABC College'
+    organization: 'ABC College'
   },
   {
     title: 'Best Faculty Award',
     year: '2017',
-    organisation: 'DAVPG College'
+    organization: 'DAVPG College'
   }
 ];
 const qualifications =[{
@@ -191,20 +192,63 @@ fetchMarqueeDetails((error, results) => {
 app.get('/', (req, res) => {
       res.render('index',{send : header_marquee_data, header_marquee_data});
 });
-const IsAuth=(req,res,next)=>{
-  if(req.session.isAuth){
+const IsAdmin=(req,res,next)=>{
+  if(req.session.isAdmin){
     next()
   }else{
-    res.render('login',{message:false});
+    res.render('login',{message:false,error:{
+      status: 403,
+      stack: 'You are not authorized to access this page'
+    }});
+  }
+}
+const IsFaculty=(req,res,next)=>{
+  if(req.session.IsFaculty){
+    next()
+  }else{
+    res.render('login',{message:false,error:{
+      status: 403,
+      stack: 'You are not authorized to access this page'
+    }});
   }
 }
  
 app.get('/facutly_profile',(req,res)=>{
-  res.render('faculty_profile',{header_marquee_data,props,experiences,publications});
-})
+  // USERNAME WILL BE FETCHED FROM FROM CALLING FUNCTION
+  var username = 'faculty@123';
+
+  const sqlQueries = [
+    'SELECT * FROM davpg.faculty WHERE Id="'+username+'";',
+    'SELECT * FROM davpg.faculty_experience WHERE email="'+username+'";',
+    'SELECT * FROM davpg.faculty_award WHERE email="'+username+'";',
+    'SELECT * FROM davpg.faculty_qualification WHERE email="'+username+'";',
+    'SELECT * FROM davpg.faculty_publication WHERE email="'+username+'";'
+  ];
+
+  Promise.all(sqlQueries.map(query => executeQuery(query)))
+  .then((results) => {
+    const [facultyDetails, experiences, awards, qualifications, publications] = results;
+    res.render('faculty_profile', { results: facultyDetails, experiences, awards, qualifications, publications, header_marquee_data });
+  }).catch((error) => {
+      console.error('Error fetching faculty profile details:', error);
+      res.status(500).send('Error fetching faculty profile details');
+  });
+});
+ 
+function executeQuery(sqlQuery) {
+  return new Promise((resolve, reject) => {
+      connection.query(sqlQuery, (err, result) => {
+          if (err) {
+              reject(err);
+          } else {
+              resolve(result);
+          }
+      });
+  });
+}
 
 app.get('/login', (req, res) => {
-        res.render('login',{message:false,header_marquee_data});
+        res.render('login',{message:false,header_marquee_data,error:false});
 });
 app.get('/ba', (req, res) => {
   res.render('ba',{header_marquee_data});
@@ -279,29 +323,41 @@ app.post('/login_auth', (req,res)=>{
   var username=req.body.uname;
   var pass = req.body.psw;
   var sql='SELECT * FROM davpg.user WHERE Id="'+username+'";';
+  var sql2 = 'SELECT * FROM davpg.faculty WHERE Id="'+username+'";';
   connection.query(sql, function (err, data) {
     if (err){
       throw err;
     } 
     else{
       if(data.lenght<0 || data[0]["Pass"]!=pass)
-        res.render('login',{message:true});
+        res.render('login',{message:true,error:{
+          status: 403,
+          stack: 'Invalid Username or Password'
+        }
+      });
       else{
         if(data[0]["UserType"]=="Admin"){
-          req.session.isAuth = true;
+          req.session.isAdmin = true;
           req.session.username = data[0]["Id"];
           res.render('admin_dashboard');
         }
         else if(data[0]["UserType"]=="faculty"){
-          req.session.isAuth = true;
-          req.session.username = data[0]["Id"];
-          res.render('faculty_dashboard',{props});
+          connection.query(sql2, function (err2, data2) {
+            if (err2){
+              throw err2;
+            } 
+            else{
+              req.session.IsFaculty = true;
+              req.session.username = data[0]["Id"];
+              res.render('faculty_dashboard',{results : data2,username, status: 200});
+            }
+          });
         }
       }
     }
   });
 });
-app.get('/viewNews', IsAuth, (req, res) => {
+app.get('/viewNews', IsAdmin, (req, res) => {
   var sql='SELECT * FROM davpg.news_events_marquee order by Type, ID DESC;';
   connection.query(sql, function (err, data) {
     if (err){
@@ -334,7 +390,7 @@ app.get('/viewallevent', (req, res) => {
     }
   });
 });
-app.get('/viewalumni', IsAuth,(req, res) => {
+app.get('/viewalumni',IsAdmin,(req, res) => {
   var sql='SELECT * FROM davpg.alumni;';
   connection.query(sql, function (err, data) {
     if (err){
@@ -345,7 +401,7 @@ app.get('/viewalumni', IsAuth,(req, res) => {
     }
   });
 });
-app.get('/delete_news/:id/:file?', IsAuth,(req, res) => {
+app.get('/delete_news/:id/:file?', IsAdmin,(req, res) => {
   var Id= req.params.id;
   var sql='DELETE FROM davpg.news_events_marquee WHERE Id='+Id;
   connection.query(sql, function (err, data) {
@@ -365,55 +421,111 @@ app.get('/delete_news/:id/:file?', IsAuth,(req, res) => {
     }
   });
 });
-app.get('/faculty_experience_instance',IsAuth, (req, res) => {
+app.get('/faculty_experience_instance',IsFaculty, (req, res) => {
   res.render('partials/faculty_experience_instance');
 });
-app.get('/faculty_experience_upload',IsAuth, (req, res) => {
+app.get('/faculty_experience_upload',IsFaculty, (req, res) => {
   res.render('partials/faculty_experience_upload');
 });
-app.get('/faculty_awards_instance',IsAuth, (req, res) => {
+app.get('/faculty_awards_instance',IsFaculty, (req, res) => {
   res.render('partials/faculty_awards_instance');
 });
-app.get('/faculty_awards_upload',IsAuth, (req, res) => {
+app.get('/faculty_awards_upload',IsFaculty, (req, res) => {
   res.render('partials/faculty_awards_upload');
 });
-app.get('/faculty_qualifications_instance',IsAuth, (req, res) => {
+app.get('/faculty_qualifications_instance',IsFaculty, (req, res) => {
   res.render('partials/faculty_qualifications_instance');
 });
-app.get('/faculty_qualifications_upload',IsAuth, (req, res) => {
+app.get('/faculty_qualifications_upload',IsFaculty, (req, res) => {
   res.render('partials/faculty_qualifications_upload');
 });
-app.get('/faculty_publications_instance',IsAuth, (req, res) => {
+app.get('/faculty_publications_instance',IsFaculty, (req, res) => {
   res.render('partials/faculty_publications_instance');
 });
-app.get('/faculty_publications_upload',IsAuth, (req, res) => {
+app.get('/faculty_publications_upload',IsFaculty, (req, res) => {
   res.render('partials/faculty_publications_upload');
 });
 
-app.get('/uploadNews', IsAuth, (req, res) => {
+app.get('/uploadNews', IsAdmin, (req, res) => {
   res.render('uploadNews',{header_marquee_data});
 });
 app.get('/nonteaching', (req, res) => {
   res.render('nonteaching',{header_marquee_data});
 });
-app.get('/update_faculty_experience', IsAuth, (req, res) => {
-  res.render('update_faculty_experience',{props,experiences});
-});
-app.get('/update_faculty_awards', IsAuth, (req, res) => {
-  res.render('update_faculty_awards',{props,awards});
-});
-app.get('/update_faculty_qualifications', IsAuth, (req, res) => {
-  res.render('update_faculty_qualifications',{props,qualifications});
-});
-app.get('/update_faculty_publications', IsAuth, (req, res) => {
-  res.render('update_faculty_publications',{props,publications});
-});
-app.get('/faculty_dashboard', IsAuth, (req, res) => {
-  res.render('faculty_dashboard',{props});
+
+app.get('/update_faculty_experience', IsFaculty, (req, res) => {
+  const username = req.session.username;
+  var sql2 = 'SELECT * FROM davpg.faculty_experience WHERE email="'+username+'";';
+  connection.query(sql2, function (err, data) {
+    if (err){
+      throw err;
+    } 
+    else{
+      res.render('update_faculty_experience',{experiences:data,username});
+    }
+  });
 });
 
+app.get('/update_faculty_awards', IsFaculty, (req, res) => {
+  const username = req.session.username;
+  var sql2 = 'SELECT * FROM davpg.faculty_award WHERE email="'+username+'";';
+  connection.query(sql2, function (err, data) {
+    if (err){
+      throw err;
+    } 
+    else{
+      res.render('update_faculty_awards',{awards:data,username});
+    }
+  });
+});
+app.get('/update_faculty_qualifications', IsFaculty, (req, res) => {
+  const username = req.session.username;
+  var sql2 = 'SELECT * FROM davpg.faculty_qualification WHERE email="'+username+'";';
+  connection.query(sql2, function (err, data) {
+    if (err){
+      throw err;
+    } 
+    else{
+      res.render('update_faculty_qualifications',{qualifications:data,username});
+    }
+  });
+});
+app.get('/update_faculty_publications', IsFaculty, (req, res) => {
+  const username = req.session.username;
+  var sql2 = 'SELECT * FROM davpg.faculty_publication WHERE email="'+username+'";';
+  connection.query(sql2, function (err, data) {
+    if (err){
+      throw err;
+    } 
+    else{
+      res.render('update_faculty_publications',{publications:data,username});
+    }
+  });
+});
+app.get('/faculty_dashboard', IsFaculty, (req, res) => {
+  const username = req.session.username;
+  var sql2 = 'SELECT * FROM davpg.faculty WHERE Id="'+username+'";';
+  connection.query(sql2, function (err, data) {
+    if (err){
+      throw err;
+    } 
+    else{
+      res.render('faculty_dashboard',{results : data,username,status: 202});
+    }
+  });
+});
 
-
+app.get('/', IsAdmin,(req, res) => {
+  var sql='SELECT * FROM davpg.alumni;';
+  connection.query(sql, function (err, data) {
+    if (err){
+      throw err;
+    } 
+    else{
+      res.render('viewalumni',{send:data,header_marquee_data});
+    }
+  });
+});
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -454,7 +566,7 @@ app.post('/uploadnews', upload.single('myfile'), (req, res, next) => {
       console.error(error);
   }
 });
-app.post('/reg_sub', upload.single('photo'), (req, res, next)=>{
+app.post('/reg_sub', upload.single('photo') , (req, res, next)=>{
   try{  
     console.log(req.file);
     var name_f=req.body.name;
@@ -484,6 +596,169 @@ app.post('/reg_sub', upload.single('photo'), (req, res, next)=>{
     console.error(error);
   }
 });
+
+app.post('/update_faculty_details', upload.fields([{name:'photo',maxCount:1},{name:'resume',maxCount:1}]), (req, res, next)=>{
+  try{  
+    console.log(req.file);
+    var {name, email, phone ,department, designation, highest_qualification, area_of_interest, teaching_experience, publications_books_patents, seminar_conference_workshop_organized,seminar_conference_workshop_attended , fellowship_awards, membership, masters_supervised, phd_supervised, other_info} = req.body;
+
+    const newPhoto = req.files['photo'] ? req.files['photo'][0] : null;
+    const newResume = req.files['resume'] ? req.files['resume'][0] : null;
+    if(newPhoto){
+      imageFile = newPhoto.filename;
+      connection.query('update davpg.faculty set photo = ? where Id = ?',[imageFile,email],(err,data)=>{
+        if(err) throw err;
+        else console.log('Image updated');
+      });
+    }
+    if(newResume){
+      resumeFile = newResume.filename;
+      connection.query('update davpg.faculty set resume = ? where Id = ?',[resumeFile,email],(err,data)=>{
+        if(err) throw err;
+        else console.log('Resume updated');
+      });
+    }
+    
+    var sql= 'UPDATE davpg.faculty SET phone=?, area_of_interest=?,highest_qualification=?, teaching_experience=?, publications_books_patents=?, seminar_conference_workshop_organized=?,seminar_conference_workshop_attended=? , fellowship_awards=?, membership=?, masters_supervised=?, phd_supervised=?, other_info=? WHERE Id = ?;';  
+    connection.query(sql, [phone, area_of_interest,highest_qualification, teaching_experience, publications_books_patents, seminar_conference_workshop_organized,seminar_conference_workshop_attended , fellowship_awards, membership, masters_supervised, phd_supervised, other_info,email],function (err, data) {
+      if (err){
+        throw err;
+      } 
+      else{
+        res.redirect('/faculty_dashboard');
+      }
+    });
+  }catch (error) {
+    console.error(error);
+  }
+});
+app.post('/update_faculty_experience', (req, res, next) => {
+  console.log(req.body);
+  const { designation, _from, _to, organization } = req.body;
+  const email = req.session.username;
+
+  const sql = 'INSERT INTO davpg.faculty_experience (email, position, _from, _to, organization) VALUES (?, ?, ?, ?, ?)';
+  connection.query(sql, [email, designation, _from, _to, organization], function (err, data) {
+    if (err) {
+      console.error('Error inserting faculty experience:', err);
+      return res.status(500).send('Error updating faculty experience');
+    } 
+    console.log('Faculty experience updated successfully');
+    res.redirect('/update_faculty_experience');
+  });
+});
+
+app.post('/update_faculty_award', (req, res, next) => {
+  console.log(req.body);
+  const { title,year, organization } = req.body;
+  const email = req.session.username;
+
+  const sql = 'INSERT INTO davpg.faculty_award (email,award , year,awarding_organization) VALUES (?, ?, ?, ?)';
+  connection.query(sql, [email, title, year, organization], function (err, data) {
+    if (err) {
+      console.error('Error inserting faculty award:', err);
+      return res.status(500).send('Error updating faculty award');
+    } 
+    console.log('Faculty award updated successfully');
+    res.redirect('/update_faculty_awards');
+  });
+});
+
+app.post('/update_faculty_qualification', (req, res, next) => {
+  console.log(req.body);
+  const { degree, specialisation, institute, year} = req.body;
+  const email = req.session.username;
+
+  const sql = 'INSERT INTO davpg.faculty_qualification (email,degree ,specialisation, institute, year) VALUES (?, ?, ?, ?, ?)';
+  connection.query(sql, [email, degree, specialisation,institute, year], function (err, data) {
+    if (err) {
+      console.error('Error inserting faculty qualification:', err);
+      return res.status(500).send('Error updating faculty qualification');
+    } 
+    console.log('Faculty qualification updated successfully');
+    res.redirect('/update_faculty_qualifications');
+  });
+});
+
+app.post('/update_faculty_publication', (req, res, next) => {
+  console.log(req.body);
+  const { publication ,department , category, year, month, indexing, issn , impact} = req.body;
+  const email = req.session.username;
+
+  const sql = 'INSERT INTO davpg.faculty_publication (email,publication ,department , category, year, month, indexing, issn , impact) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)';
+  connection.query(sql, [email,publication ,department , category, year, month, indexing, issn , impact], function (err, data) {
+    if (err) {
+      console.error('Error inserting faculty publication:', err);
+      return res.status(500).send('Error updating faculty publication');
+    } 
+    console.log('Faculty publication updated successfully');
+    res.redirect('/update_faculty_publications');
+  });
+});
+
+app.post('/delete_faculty_experience/:experienceId', (req, res) => {
+  // Extract the experienceId from URL parameters
+  const experienceId = req.params.experienceId;
+
+  // Execute a DELETE query in the database
+  const sql = 'DELETE FROM davpg.faculty_experience WHERE id = ?';
+  connection.query(sql, [experienceId], function (err, result) {
+      if (err) {
+          console.error('Error deleting experience:', err);
+          return res.status(500).send('Error deleting experience');
+      } 
+      console.log('Experience deleted successfully');
+      res.redirect('/update_faculty_experience');
+  });
+});
+app.post('/delete_faculty_award/:awardId', (req, res) => {
+  // Extract the awardId from URL parameters
+  const awardId = req.params.awardId;
+
+  // Execute a DELETE query in the database
+  const sql = 'DELETE FROM davpg.faculty_award WHERE id = ?';
+  connection.query(sql, [awardId], function (err, result) {
+      if (err) {
+          console.error('Error deleting award:', err);
+          return res.status(500).send('Error deleting award');
+      } 
+      console.log('Award deleted successfully');
+      res.redirect('/update_faculty_awards');
+  });
+});
+
+app.post('/delete_faculty_qualification/:qualificationId', (req, res) => {
+  // Extract the qualificationId from URL parameters
+  const qualificationId = req.params.qualificationId;
+
+  // Execute a DELETE query in the database
+  const sql = 'DELETE FROM davpg.faculty_qualification WHERE id = ?';
+  connection.query(sql, [qualificationId], function (err, result) {
+      if (err) {
+          console.error('Error deleting qualification:', err);
+          return res.status(500).send('Error deleting qualification');
+      } 
+      console.log('qualification deleted successfully');
+      res.redirect('/update_faculty_qualifications');
+  });
+});
+
+app.post('/delete_faculty_publication/:publicationId', (req, res) => {
+  // Extract the publicationId from URL parameters
+  const publicationId = req.params.publicationId;
+
+  // Execute a DELETE query in the database
+  const sql = 'DELETE FROM davpg.faculty_publication WHERE id = ?';
+  connection.query(sql, [publicationId], function (err, result) {
+      if (err) {
+          console.error('Error deleting publication:', err);
+          return res.status(500).send('Error deleting publication');
+      } 
+      console.log('publication deleted successfully');
+      res.redirect('/update_faculty_publications');
+  });
+});
+
 app.get('/logout', (req, res, next) => {
   req.session.destroy((err) => {
     if (err) throw err;

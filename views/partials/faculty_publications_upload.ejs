@@ -6,39 +6,39 @@
         width: 80%;
     }
     </style>
-<form action="/update">
+<form action="/update_faculty_publication" method="post">
     <div class="publication-instance">
         <div class="form-group">
-            <label for="title">Award</label>
-            <input type="text" class="form-control" id="title">
+            <label for="title">Title</label>
+            <input  type="text" name="publication" class="form-control" id="title" >
         </div>
         <div class="form-group">
             <label for="dept">Department</label>
-            <input type="text" class="form-control" id="dept" >
+            <input  type="text" name="department" class="form-control" id="dept" >
         </div>
         <div class="form-group">
             <label for="category">Category</label>
-            <input type="text" class="form-control" id="category">
+            <input  type="text" name="category" class="form-control" id="category">
         </div>
         <div class="form-group">
             <label for="year">Year</label>
-            <input type="text" class="form-control" id="year" >
+            <input  type="text" name="year" class="form-control" id="year" >
         </div>
         <div class="form-group">
             <label for="month">Month</label>
-            <input type="text" class="form-control" id="month" >
+            <input  type="text" name="month" class="form-control" id="month" >
         </div>
         <div class="form-group">
             <label for="indexing">Indexing</label>
-            <input type="text" class="form-control" id="indexing" >
+            <input  type="text" name="indexing" class="form-control" id="indexing">
         </div>
         <div class="form-group">
             <label for="issn">ISSN</label>
-            <input type="text" class="form-control" id="issn" >
+            <input  type="text" name="issn" class="form-control" id="issn" >
         </div>
         <div class="form-group">
             <label for="impact">Impact Factor</label>
-            <input type="text" class="form-control" id="impact">
+            <input  type="text" name="impact" class="form-control" id="impact" >
         </div>
     </div>
     <button type="submit" class="btn btn-success" style="width: auto;"><i class="fa-solid fa-upload"></i></button>

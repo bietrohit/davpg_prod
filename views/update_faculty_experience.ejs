@@ -11,7 +11,7 @@
             <h5>View and Update Experiences</h5>
         </div>
         <% experiences.forEach(function(experience) { %>
-            <form action="/delete">
+            <form action="/delete_faculty_experience/<%= experience.id %>" method="post">
                 <%- include('./partials/faculty_experience_instance.ejs',{experience : experience}) -%>
                 <button type="submit" class="btn btn-danger" style="width: auto;"><i class="fa-solid fa-trash"></i></button>
             </form>

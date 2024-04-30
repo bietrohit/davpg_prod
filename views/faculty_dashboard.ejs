@@ -1,90 +1,101 @@
 <%- include('./partials/admin_header') -%>
 <div class="faculty-main-box">
 
+<% if (status === 200) { %>
+<script>
+    alert(' Welcome back !!');
+</script>
+<% } %>
+
     <%- include('./partials/faculty_dashboard_nav') %>
 
     <div class="update_details">
         <div class="basic-header">
             <h5>View and Update Details</h5>
         </div>
+        <% results.forEach(props => { %>
         <div class="update-faculty-photo">
-            <img src="<%= props.photo%>">
+            <img src="docs/<%= props.photo %>">
         </div>
-        <form action="/upload">
+        <div class="update-faculty-resume">
+            <a href="docs/<%= props.resume%>" download>Resume</a>
+        </div>
+        <form action="/update_faculty_details" method="post" enctype="multipart/form-data">
             <div class="form-group">
-                <label for="photo">Photo</label>
-                <input type="file" class="form-control" id="photo" value="<%= props.photo%>">
+                <label for="photo" title="Add jpg/jpeg/png image only">Photo</label>
+                <input type="file" class="form-control" id="photo" name="photo" value="<%= props.photo %>">
             </div>
             <div class="form-group">
-                <label for="resume">Resume</label>
-                <input type="file" class="form-control" id="resume" value="<%= props.resume%>">
+                <label for="resume" title="Add pdf file only">Resume</label>
+                <input type="file" class="form-control" id="resume" name="resume" value="<%= props.resume %>">
             </div>
             <div class="form-group">
                 <label for="name">Name</label>
-                <input type="text" class="form-control" id="name" value="<%= props.name%>" readonly>
+                <input type="text" class="form-control" id="name" name="name" value="<%= props.Name%>" readonly>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
-                <input type="email" class="form-control" id="email" value="<%= props.email%>" readonly>
+                <input type="email" class="form-control" id="email" name="email" value="<%= props.Id%>" readonly>
             </div>
             <div class="form-group">
                 <label for="phone">Phone</label>
-                <input type="text" class="form-control" id="phone" value="<%= props.phone%>">
+                <input type="text" class="form-control" id="phone" name="phone" value="<%= props.phone%>">
             </div>
             <div class="form-group">
                 <label for="department">Department</label>
-                <input type="text" class="form-control" id="department" value="<%= props.department%>" readonly>
+                <input type="text" class="form-control" id="department" name="department" value="<%= props.Department%>" readonly>
             </div>
             <div class="form-group">
                 <label for="designation">Designation</label>
-                <input type="text" class="form-control" id="designation" value="<%= props.designation%>" readonly>
+                <input type="text" class="form-control" id="designation" name="designation" value="<%= props.Designation%>" readonly>
             </div>
             <div class="form-group">
                 <label for="highest_qualification">Highest Qualification</label>
-                <input type="text" class="form-control" id="highest_qualification" value="<%= props.highest_qualification%>">
+                <input type="text" class="form-control" id="highest_qualification" name="highest_qualification" value="<%= props.highest_qualification%>">
             </div>
             <div class="form-group">
                 <label for="area_of_interest">Area of Interest</label>
-                <input type="text" class="form-control" id="area_of_interest" value="<%= props.area_of_interest%>">
+                <input type="text" class="form-control" id="area_of_interest" name="area_of_interest" value="<%= props.area_of_interest%>">
             </div>  
             <div class="form-group">
-                <label for="teachingExperience">Teaching Experience</label>
-                <input type="text" class="form-control" id="teachingExperience" value="<%= props.teachingExperience%>">
+                <label for="teaching_experience">Teaching Experience</label>
+                <input type="text" class="form-control" id="teaching_experience" name="teaching_experience" value="<%= props.teaching_experience%>">
             </div>
             <div class="form-group">
                 <label for="publications_books_patents">Publications/Books/Patents</label>
-                <input type="text" class="form-control" id="publications_books_patents" value="<%= props.publications_books_patents%>">
+                <input type="text" class="form-control" id="publications_books_patents" name="publications_books_patents" value="<%= props.publications_books_patents%>">
             </div>
             <div class="form-group">
                 <label for="seminar_conference_workshop_organized">Seminar/Conference/Workshop Organized</label>
-                <input type="text" class="form-control" id="seminar_conference_workshop_organized" value="<%= props.seminar_conference_workshop_organized%>">
+                <input type="text" class="form-control" id="seminar_conference_workshop_organized" name="seminar_conference_workshop_organized"  value="<%= props.seminar_conference_workshop_organized%>">
             </div>
             <div class="form-group">
                 <label for="seminar_conference_workshop_attended">Seminar/Conference/Workshop Attended</label>
-                <input type="text" class="form-control" id="seminar_conference_workshop_attended" value="<%= props.seminar_conference_workshop_attended%>">
+                <input type="text" class="form-control" name="seminar_conference_workshop_attended" id="seminar_conference_workshop_attended" value="<%= props.seminar_conference_workshop_attended%>">
             </div>
             <div class="form-group">
                 <label for="fellowship_awards">Fellowship/Awards</label>
-                <input type="text" class="form-control" id="fellowship_awards" value="<%= props.fellowship_awards%>">
+                <input type="text" class="form-control" name="fellowship_awards" id="fellowship_awards" value="<%= props.fellowship_awards%>">
             </div>
             <div class="form-group">
                 <label for="membership">Membership of Profession/Educational boards</label>
-                <input type="text" class="form-control" id="membership" value="<%= props.membership%>">
+                <input type="text" class="form-control" name="membership" id="membership" value="<%= props.membership%>">
             </div>
             <div class="form-group">
                 <label for="masters_supervised">Masters Supervised</label>
-                <input type="text" class="form-control" id="masters_supervised" value="<%= props.masters_supervised%>">
+                <input type="text" class="form-control" name="masters_supervised" id="masters_supervised" value="<%= props.masters_supervised%>">
             </div>
             <div class="form-group">
                 <label for="phd_supervised">PhD Supervised</label>
-                <input type="text" class="form-control" id="phd_supervised" value="<%= props.phd_supervised%>">
+                <input type="text" class="form-control" name="phd_supervised" id="phd_supervised" value="<%= props.phd_supervised%>">
             </div>
             <div class="form-group">
                 <label for="other_info">Any Other Information</label>
-                <textarea class="form-control" id="other_info" rows="3"><%= props.other_info%></textarea>
+                <textarea class="form-control" id="other_info" name="other_info" rows="3"><%= props.other_info%></textarea>
             </div>
             <button type="submit" class="btn btn-primary">UPDATE DETAILS</button>
         </form>
+        <% }) %>
     </div>
 </div>   
 <%- include('./partials/footer') -%>

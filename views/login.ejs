@@ -3,6 +3,7 @@
 body {font-family: Arial, Helvetica, sans-serif;}
 form {border: 3px solid #f1f1f1;}
 
+
 input[type=text], input[type=password] {
   width: 100%;
   padding: 12px 20px;
@@ -59,12 +60,17 @@ span.psw {
   }
   .cancelbtn {
      width: 100%;
-  }
+  } 
 }
 </style>
 </head>
 <body>
 
+<% if (error && error.status === 403) { %>
+  <script>
+      alert('<%= error.stack %>');
+  </script>
+<% } %>
 <h2 style="text-align: center;">Admin Login</h2>
 
 <form action="/login_auth" method="post">
