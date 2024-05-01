@@ -305,23 +305,36 @@ app.post('/addfaculty', (req, res) => {
       return;
     }
     console.log('User registered successfully');
-    // console.log(JSON.stringify(result));
 
     // Insert data into the faculty table using the retrieved user ID
     const insertFacultyQuery = 'INSERT INTO davpg.faculty (Id, Name, Department, Designation) VALUES (?, ?, ?, ?)';
     connection.query(insertFacultyQuery, [email, name, department, designation], (err, result) => {
       if (err) {
         console.error('Error inserting faculty data:', err);
-        res.status(500)({ error: 'An error occurred while saving faculty data.' });
+        res.status(500).json({ error: 'An error occurred while saving faculty data.' });
         return;
       }
 
       console.log('Faculty data saved successfully');
-      res.status(200).json({ message: 'Faculty data saved successfully' });
       res.redirect('/addfaculty');
     });
   });
 });
+
+
+// Define a route to fetch faculty data
+app.get('/viewfaculty', (req, res) => {
+  const sql = 'SELECT * FROM faculty where Department="arts"';
+  connection.query(sql, (err, data) => {
+    if (err) {
+      console.error('Error executing MySQL query:', err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }else{
+      res.render('viewfaculty', { results:data, header_marquee_data});
+    }
+  });
+});
+
 
 app.post('/reg_sub', upload.single('photo'), (req, res, next)=>{
   try{  
