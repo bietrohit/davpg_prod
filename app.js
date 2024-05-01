@@ -173,9 +173,7 @@ app.post('/login_auth', (req,res)=>{
     }
   });
 });
-app.get('/addfaculty', IsAuth, (req, res) => {
-  res.render('addfaculty',{send : header_marquee_data, header_marquee_data});
-});
+
 app.get('/viewNews', IsAuth, (req, res) => {
   var sql='SELECT * FROM davpg.news_events_marquee order by Type, ID DESC;';
   connection.query(sql, function (err, data) {
