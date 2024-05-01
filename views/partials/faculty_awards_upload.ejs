@@ -1,0 +1,25 @@
+<style>
+    .award-instance {
+        /* border: 1px solid #ccc; */
+        padding: 10px;
+        margin-bottom: 10px;
+        width: 80%;
+    }
+</style>
+<form action="/update_faculty_award" method="post">
+    <div class="award-instance">
+        <div class="form-group">
+            <label for="title">Award</label>
+            <input type="text" name="title" class="form-control" id="title">
+        </div>
+        <div class="form-group">
+            <label for="year">Year</label>
+            <input type="text" name="year" class="form-control" id="year">
+        </div>
+        <div class="form-group">
+            <label for="organization">Awarding Organization</label>
+            <input type="text" name="organization" class="form-control" id="organization">
+        </div>
+    </div>
+    <button type="submit" class="btn btn-success" style="width: auto;"><i class="fa-solid fa-upload"></i></button>
+</form>

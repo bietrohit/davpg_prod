@@ -1,0 +1,22 @@
+<style>
+    .award-instance {
+        /* border: 1px solid #ccc; */
+        padding: 10px;
+        margin-bottom: 10px;
+        width: 80%;
+    }
+</style>
+<div class="award-instance">
+    <div class="form-group">
+        <label for="title">Award</label>
+        <input readonly type="text" name="title" class="form-control" id="title" value="<%= award.award%>">
+    </div>
+    <div class="form-group">
+        <label for="year">Year</label>
+        <input readonly type="text" name="year" class="form-control" id="year" value="<%= award.year%>">
+    </div>
+    <div class="form-group">
+        <label for="organization">Awarding Organization</label>
+        <input readonly type="text" name="organization" class="form-control" id="organization" value="<%= award.awarding_organization%>">
+    </div>
+</div>

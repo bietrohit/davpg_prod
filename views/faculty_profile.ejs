@@ -1,0 +1,192 @@
+<%- include('./partials/header') -%>
+
+<div style="height: auto;">
+    <div class="main-box">
+        <% results.forEach(props => { %>
+        <div class="basic-card p-3">
+            <div class="profile_pic_resume ">
+                <div class="text-center">
+                    <img src="docs/<%= props.photo %>">
+                </div>
+                
+                <div class="resume_box text-center mt-3" >
+                        <a href="docs/<%= props.resume%>" download>Resume</a>         
+                </div> 
+            </div>
+            <div class="basic_details">
+                <hr>
+                <h3><%= props.Name %></h3><hr>
+                <h5><%= props.Designation %></h5><hr>
+                <div> <i class="fa fa-phone"></i> <%= props.phone %> </div><hr>
+                <div> <i class="fa fa-envelope"></i> <%= props.Id %> </div><hr>
+                <div> <%= props.Department %></div><hr>
+                <div><strong>Area of Interest : </strong><%= props.area_of_interest %></div><hr>
+            </div>
+        </div>
+        <div class="basic-card added-facutly-details">
+            <hr>
+            <div class="info-item">
+                <h6>Highest Qualification</h6>
+                <p><%= props.highest_qualification %></p>
+            </div><hr>
+            <div class="info-item">
+                <h6>Teaching Experience</h6>
+                <p><%= props.teaching_experience %></p>
+            </div><hr>
+            <div class="info-item">
+                <h6>Publications/Books/Patents</h6>
+                <p><%= props.publications_books_patents%></p>
+            </div><hr>
+            <div class="info-item">
+                <h6>Seminar/Workshops/Confrences organised</h6>
+                <p><%= props.seminar_conference_workshop_organized %></p>
+            </div><hr>
+            <div class="info-item">
+                <h6>Seminar/Workshops/Confrences attended</h6>
+                <p><%= props.seminar_conference_workshop_attended %></p>
+            </div><hr>
+            <div class="info-item">
+                <h6>Felloships Awards</h6>
+                <p><%= props.fellowship_awards %></p>
+            </div><hr>
+            <div class="info-item">
+                <h6>Memberships/Associations of Academic/Professional boards</h6>
+                <p><%= props.membership%></p>
+            </div><hr>
+            <div class="info-item">
+                <h6>Marsters Superwised</h6>
+                <p><%= props.masters_supervised %></p>
+            </div><hr>
+            <div class="info-item">
+                <h6>P.H.D. Superwised</h6>
+                <p><%= props.phd_supervised %></p>
+            </div><hr>
+            <div class="info-item">
+                <h6>Any other Information</h6>
+                <p><%= props.other_info%></p>
+            </div><hr>
+        </div>
+
+        <% }) %>
+        
+        <div class="basic-card added-facutly-details">
+            <div class="basic-header" >
+                <h5>Experiences</h5>
+            </div>
+            <div class="col-10" style="text-align: left; width: 90%; overflow: hidden;">
+                <table class="table" style="background-color: rgb(204, 204, 204); border-radius: 5px;">
+                    <thead>
+                      <tr>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Position</th>
+                        <th>Organization</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <%if (experiences.length >0){ %>
+                        <% experiences.forEach(function(row){ %>
+                        <tr>
+                          <td><%= row._from %></td>
+                          <td><%= row._to %></td>
+                          <td><%= row.position %></td>
+                          <td><%= row.organization %></td>
+                        </tr>
+                        <% })}else{ %>
+                            <tr>
+                              <td colspan="6">No Record Found</td>
+                            </tr>
+                          <% } %>
+                      </tbody>
+                  </table>
+              </div>
+        </div>
+
+        <div class="basic-card added-facutly-details">
+            <div class="basic-header" >
+                <h5>Awards</h5>
+            </div>
+            <div class="col-10" style="text-align: left; width: 90%; overflow: hidden;">
+                <table class="table" style="background-color: rgb(204, 204, 204); border-radius: 5px;">
+                    <thead>
+                      <tr>
+                        <th>Award</th>
+                        <th>Awarding Organization</th>
+                        <th>Year</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <%if (awards.length >0){ %> 
+                        <% awards.forEach(function(row){ %>
+                        <tr>
+                          <td><%= row.award %></td>
+                          <td><%= row.awarding_organization %></td>
+                          <td><%= row.year %></td>
+                        </tr> 
+                        <% })}else{ %>
+                            <tr>
+                              <td colspan="6">No Record Found</td>
+                            </tr>
+                          <% } %>
+                      </tbody>
+                  </table>
+              </div>
+        </div>
+
+        <div class="basic-card added-facutly-details">
+            <div class="basic-header" >
+                <h5>Educational Qualifications</h5>
+            </div>
+            <div class="col-10" style="text-align: left; width: 90%; overflow: hidden;">
+                <table class="table" style="background-color: rgb(204, 204, 204); border-radius: 5px;">
+                    <thead>
+                      <tr>
+                        <th>From</th>
+                        <th>To</th>
+                        <th>Position</th>
+                        <th>Organization</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                        <%if (qualifications.length >0){ %>
+                        <% qualifications.forEach(function(row){ %>
+                        <tr>
+                          <td><%= row.degree %></td>
+                          <td><%= row.specialisation %></td>
+                          <td><%= row.institute %></td>
+                          <td><%= row.year %></td>
+                        </tr>
+                        <% })}else{ %>
+                            <tr>
+                              <td colspan="6">No Record Found</td>
+                            </tr>
+                          <% } %>
+                      </tbody>
+                  </table>
+              </div>
+        </div>
+
+        <div class="basic-card added-facutly-details">
+            <div class="basic-header" >
+                <h5>Publications</h5>
+            </div>
+            <%if (publications.length >0){ %>
+                <% publications.forEach(function(publication){ %>
+                    <div class="basic-card basic-sub-card">
+                        <div><strong>Title : </strong><%= publication.publication %></div>
+                        <div><strong>Department : </strong><%= publication.department%></div>
+                        <div><strong>Category : </strong><%= publication.category %></div>
+                        <div><strong>Year : </strong><%= publication.year %></div>
+                        <div><strong>Month : </strong><%= publication.month %></div>
+                        <div><strong>Indexing : </strong><%= publication.indexing %></div>
+                        <div><strong>ISSN : </strong><%= publication.issn %></div>
+                        <div><strong>Impact factor : </strong><%= publication.impact %></div>
+                    </div>
+                <% })}else{ %>
+                    <div class="basic-card basic-sub-card">No records found.</div>
+                  <% } %>
+        </div>
+    </div>
+</div>
+
+<%- include('./partials/footer') -%>

@@ -1,0 +1,42 @@
+<style>
+    .publication-instance {
+        /* border: 1px solid #ccc; */
+        padding: 10px;
+        margin-bottom: 10px;
+        width: 80%;
+    }
+</style>
+<div class="publication-instance">
+    <div class="form-group">
+        <label for="title">Title</label>
+        <input readonly type="text" name="publication" class="form-control" id="title" value="<%= publication.publication%>">
+    </div>
+    <div class="form-group">
+        <label for="dept">Department</label>
+        <input readonly type="text" name="department" class="form-control" id="dept" value="<%= publication.department%>">
+    </div>
+    <div class="form-group">
+        <label for="category">Category</label>
+        <input readonly type="text" name="category" class="form-control" id="category" value="<%= publication.category%>">
+    </div>
+    <div class="form-group">
+        <label for="year">Year</label>
+        <input readonly type="text" name="year" class="form-control" id="year" value="<%= publication.year%>">
+    </div>
+    <div class="form-group">
+        <label for="month">Month</label>
+        <input readonly type="text" name="month" class="form-control" id="month" value="<%= publication.month%>">
+    </div>
+    <div class="form-group">
+        <label for="indexing">Indexing</label>
+        <input readonly type="text" name="indexing" class="form-control" id="indexing" value="<%= publication.indexing%>">
+    </div>
+    <div class="form-group">
+        <label for="issn">ISSN</label>
+        <input readonly type="text" name="issn" class="form-control" id="issn" value="<%= publication.issn%>">
+    </div>
+    <div class="form-group">
+        <label for="impact">Impact Factor</label>
+        <input readonly type="text" name="impact" class="form-control" id="impact" value="<%= publication.impact%>">
+    </div>
+</div>

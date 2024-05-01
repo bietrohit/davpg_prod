@@ -1,0 +1,120 @@
+<style>
+    .card {
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      overflow: hidden;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 20px;
+    }
+    
+    .card-photo {
+      width: 100%;
+      height: auto;
+    }
+    
+    .card-content {
+      padding: 20px;
+    }
+    
+    .card-name {
+      margin-top: 0;
+      font-size: 1.5rem;
+    }
+    
+    .card-designation, .card-email {
+      margin: 5px 0;
+      font-size: 1rem;
+      color: #666;
+    }
+    .containerr{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+    }
+    .heading{
+        margin-top: 30px;
+        margin-bottom: 30px;
+        font-weight: 600;
+        color: #666;
+    }
+    
+    .button-3 {
+      appearance: none;
+      background-color: #2ea44f;
+      border: 1px solid rgba(27, 31, 35, .15);
+      border-radius: 6px;
+      box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+      box-sizing: border-box;
+      color: #fff;
+      cursor: pointer;
+      display: inline-block;
+      font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 20px;
+      padding: 6px 16px;
+      position: relative;
+      text-align: center;
+      text-decoration: none;
+      user-select: none;
+      -webkit-user-select: none;
+      touch-action: manipulation;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+    
+    .button-3:focus:not(:focus-visible):not(.focus-visible) {
+      box-shadow: none;
+      outline: none;
+    }
+    
+    .button-3:hover {
+      background-color: #2c974b;
+    }
+    
+    .button-3:focus {
+      box-shadow: rgba(46, 164, 79, .4) 0 0 0 3px;
+      outline: none;
+    }
+    
+    .button-3:disabled {
+      background-color: #94d3a2;
+      border-color: rgba(27, 31, 35, .1);
+      color: rgba(255, 255, 255, .8);
+      cursor: default;
+    }
+    
+    .button-3:active {
+      background-color: #298e46;
+      box-shadow: rgba(20, 70, 32, .2) 0 1px 0 inset;
+    }
+    
+    </style>
+    
+    <%- include('./partials/header') -%>
+    
+    
+    <%= console.log(results) %>
+    <div class="containerr" id="facultyContainer">  
+        <div class="heading"> <h1>Faculty List</h1></div>
+        <% if(results.length>0){ %>
+            <% results.forEach(function (result) { %>
+                <div class="card">
+                    <img class="card-photo" src="" alt="Profile Photo">
+                    <div class="card-content">
+                      <h2 class="card-name"><%=result.Name%></h2>
+                      <p class="card-designation"><%=result.Designation%></p>
+                      <p class="card-email"><%=result.Email%></p>
+                     <!-- <a href="">  <button class="button-3" role="button">View</button></a>  -->
+        <a href="/faculty_profile/<%=result.Email%>" class="button-3" style="margin-top: 30px;" role="button">View Profile</a>
+    
+                    </div>
+                  </div>
+                  
+           <% })%>
+           <% }%>
+    </div>
+    
+    

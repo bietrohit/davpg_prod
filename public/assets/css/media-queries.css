@@ -18,6 +18,9 @@
   .carousel-wrapper {
     height: 250px;
   }
+  .dropdown-menu-align-right{
+    margin-left: 0%; margin-top: 0px;
+  }
 }
 
 @media only screen and (max-width: 768px) {
@@ -61,5 +64,36 @@
   }
   .extraInfo {
     display: flex;
+  }
+}
+
+@media screen and (max-width:1150px) {
+  .main-box {
+    width: 95vw;
+    margin: auto;
+    padding: 50px 0px;
+  } 
+  .basic-card{
+    width: 90vw;
+    height: auto;
+    flex-direction: column;
+  }
+  .basic-sub-card{
+    width: 90%;
+  }
+  .profile_pic_resume{
+    width: auto;
+    height: auto;
+    margin-bottom: 25px;
+  }
+  .basic_details{
+    width: auto;
+    height: auto;
+  }
+  .info-item{
+    flex-direction: column;
+  }
+  .info-item h6,p{
+    width: 100%;
   }
 }
