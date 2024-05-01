@@ -192,8 +192,9 @@ fetchMarqueeDetails((error, results) => {
 app.get('/', (req, res) => {
       res.render('index',{send : header_marquee_data, header_marquee_data});
 });
+
 const IsAdmin=(req,res,next)=>{
-  if(req.session.isAdmin){
+  if(req.session.IsAdmin){
     next()
   }else{
     res.render('login',{message:false,error:{
@@ -336,8 +337,8 @@ app.post('/login_auth', (req,res)=>{
         }
       });
       else{
-        if(data[0]["UserType"]=="Admin"){
-          req.session.isAdmin = true;
+        if(data[0]["UserType"]=="admin"){
+          req.session.IsAdmin = true;
           req.session.username = data[0]["Id"];
           res.render('admin_dashboard');
         }
@@ -511,18 +512,6 @@ app.get('/faculty_dashboard', IsFaculty, (req, res) => {
     } 
     else{
       res.render('faculty_dashboard',{results : data,username,status: 202});
-    }
-  });
-});
-
-app.get('/', IsAdmin,(req, res) => {
-  var sql='SELECT * FROM davpg.alumni;';
-  connection.query(sql, function (err, data) {
-    if (err){
-      throw err;
-    } 
-    else{
-      res.render('viewalumni',{send:data,header_marquee_data});
     }
   });
 });
@@ -743,11 +732,10 @@ app.post('/delete_faculty_qualification/:qualificationId', (req, res) => {
   });
 });
 
+// api to delete faculty publication
 app.post('/delete_faculty_publication/:publicationId', (req, res) => {
-  // Extract the publicationId from URL parameters
   const publicationId = req.params.publicationId;
 
-  // Execute a DELETE query in the database
   const sql = 'DELETE FROM davpg.faculty_publication WHERE id = ?';
   connection.query(sql, [publicationId], function (err, result) {
       if (err) {
@@ -765,7 +753,7 @@ app.get('/logout', (req, res, next) => {
     res.redirect("/login");
   });
 });
-// Port Number
+
 const PORT = process.env.PORT ||8000;
  
 // Server Setup

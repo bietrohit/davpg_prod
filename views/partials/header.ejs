@@ -1,55 +1,67 @@
 <!DOCTYPE html>
 <html lang='en'>
+
 <head>
-<meta charset='UTF-8'/>
-<meta http-equiv='X-UA-Compatible' content='IE=edge' />
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
-<link rel="stylesheet" href="/assets/css/style.css"/>
-<link rel="stylesheet" href="/assets/css/carousal.css"/>
-<link rel="stylesheet" href="/assets/css/media-queries.css" />
-<title>DAVPG College Gorakhpur</title>
-<link rel = "icon" href ="/assets/img/davpg-college-gkp-logo.png" type = "image/x-icon">
-<script src="https://kit.fontawesome.com/a20011232a.js" crossorigin="anonymous"></script>
+  <meta charset='UTF-8' />
+  <meta http-equiv='X-UA-Compatible' content='IE=edge' />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe"
+    crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://unpkg.com/flickity@2/dist/flickity.min.css">
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <link rel="stylesheet" href="/assets/css/carousal.css" />
+  <link rel="stylesheet" href="/assets/css/media-queries.css" />
+  <title>DAVPG College Gorakhpur</title>
+  <link rel="icon" href="/assets/img/davpg-college-gkp-logo.png" type="image/x-icon">
+  <script src="https://kit.fontawesome.com/a20011232a.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
 
   <div class="">
     <div class="ticker">
-        <div class="news-title">
-            <img src="/assets/img/speak.png" width="50px"/>
-        </div>
-        <div class="news">
-            <marquee class="news-content" onmouseover="this.stop();" onmouseout="this.start()";>
-              <% for(var i=0; i<header_marquee_data.length; i++){ %>
-                <% if(header_marquee_data[i].Type == "Marquee"){ %>
-                    <a href="/docs/<%= header_marquee_data[i].Link %>" target="_blank" >
-                      <img src="/assets/img/33.gif"></img><%= header_marquee_data[i].Title %>
-                    </a>
-                <% } %>
+      <div class="news-title">
+        <img src="/assets/img/speak.png" width="50px" />
+      </div>
+      <div class="news">
+        <marquee class="news-content" onmouseover="this.stop();" onmouseout="this.start()" ;>
+          <% for(var i=0; i<header_marquee_data.length; i++){ %>
+            <% if(header_marquee_data[i].Type=="Marquee" ){ %>
+              <a href="/docs/<%= header_marquee_data[i].Link %>" target="_blank">
+                <img src="/assets/img/33.gif"></img>
+                <%= header_marquee_data[i].Title %>
+              </a>
               <% } %>
-            </marquee>
-        </div>
+                <% } %>
+        </marquee>
+      </div>
     </div>
-</div>
+  </div>
 
   <div class="topcontain">
-  <!-- <a href="/"><img src="./assets/img/logo1.jpg" style="width:100%"/></a> -->
-   <a href="/"><img src="/assets/img/logo2.jpg" style="width:80%"/></a>
-    <div style="width: max-content;display: flex;align-items:center;justify-content: center;"><img src="/assets/img/logo3.png" style="width:10vw"/>
-    <img src="/assets/img/logo4.png" style="width:10vw"/></div>
+    <!-- <a href="/"><img src="./assets/img/logo1.jpg" style="width:100%"/></a> -->
+    <a href="/"><img src="/assets/img/logo2.jpg" style="width:80%" /></a>
+    <div style="width: max-content;display: flex;align-items:center;justify-content: center;"><img
+        src="/assets/img/logo3.png" style="width:10vw" />
+      <img src="/assets/img/logo4.png" style="width:10vw" />
+    </div>
   </div>
   <nav class="navbar navbar-expand-lg navbar-light">
-    <a class="navbar-brand" href="#"><div class="logo"><img src="/assets/img/logo1.jpg" /></div></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+    <a class="navbar-brand" href="/">
+      <div class="logo"><img src="/assets/img/logo1.jpg" /></div>
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+      aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon" style="z-index: 9999;"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-center" id="navbarNavDropdown">
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             About
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -61,21 +73,24 @@
       </ul>
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             Administration
           </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink1">
             <a class="dropdown-item" href="/gbody">Governing Body</a>
             <a class="dropdown-item" href="/m_message">Manager's Message</a>
             <a class="dropdown-item" href="/p_message">Principal's Message</a>
             <a class="dropdown-item" href="#">Public Relation Officer</a>
-            <a class="dropdown-item" href="http://ddugu.ac.in/OrdinanceRules.aspx" target="_blank">DDU Act & Statute</a> 
-            <a class="dropdown-item" href="https://uphed.gov.in/HigherEduDirectorate/DefaultDir.aspx" target="_blank">Directorate, UP Higher Education</a>
+            <a class="dropdown-item" href="http://ddugu.ac.in/OrdinanceRules.aspx" target="_blank">DDU Act & Statute</a>
+            <a class="dropdown-item" href="https://uphed.gov.in/HigherEduDirectorate/DefaultDir.aspx"
+              target="_blank">Directorate, UP Higher Education</a>
             <div class="dropdown">
-              <a class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="dropdown-item dropdown-toggle" href="#"  data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 Committees
               </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink2">
                 <a class="dropdown-item" href="/practorial">Proctorial Board</a>
                 <a class="dropdown-item" href="/grievance">Grievance Cell</a>
                 <a class="dropdown-item" href="/research">Research & Innovation</a>
@@ -87,22 +102,20 @@
             </div>
           </div>
         </li>
-        </ul>
-        <!--
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Faculties and Staff</a>
-        </li>-->
-        <ul class="navbar-nav">
+      </ul>
+      <ul class="navbar-nav">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             Academics
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <div class="dropdown">
-              <a class="dropdown-item dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="dropdown-item dropdown-toggle" href="#"  data-toggle="dropdown"
+                aria-haspopup="true" aria-expanded="false">
                 Programmes Offered
               </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" style="margin-left: 90%; margin-top: -10%;">
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                 <a class="dropdown-item" href="/ba">Bachelor of Arts</a>
                 <a class="dropdown-item" href="/bsc">Bachelor of Science</a>
                 <a class="dropdown-item" href="/ma">Master of Arts</a>
@@ -124,11 +137,11 @@
             <a class="dropdown-item" href="#">Best Practices</a>-->
           </div>
         </li>
-        </ul>
-        <!--
+      </ul>
+      <!--
         <ul class="navbar-nav">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Facilities
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -142,9 +155,10 @@
             <a class="dropdown-item" href="#">Departmental Library</a>
           </div>
         </li>-->
-        <ul class="navbar-nav">
+      <ul class="navbar-nav">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             Admissions
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -155,7 +169,8 @@
       </ul>
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             Alumni
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -168,7 +183,8 @@
       </ul>
       <ul class="navbar-nav">
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
             Events
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -182,8 +198,8 @@
           </div>
         </li>
       </ul>
-        <!--<li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      <!--<li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Gallery
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -193,7 +209,7 @@
           </div>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             IQAC
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -208,18 +224,18 @@
           <a class="nav-link" href="#">RTI</a>
         </li>
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <a class="nav-link dropdown-toggle" href="#"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             NAAC
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <a class="dropdown-item" href="#">SSR</a>
         </li>-->
-        <ul class="navbar-nav">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">IQAC</a>
-          </li>
-        </ul>  
-        <ul class="navbar-nav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">IQAC</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav">
         <li class="nav-item active">
           <a class="nav-link" href="/contact">Contact Us</a>
         </li>
