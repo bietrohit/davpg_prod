@@ -14,48 +14,42 @@ const switchService = (i, j) => {
     document.getElementById("studentServices").classList.add("hidden");
   }
 };
-$(function(){
-  $('.dropdown').hover(function() {
-    $(this).find('.dropdown-menu').first().addClass('show');
-  }, function() {
-    $(this).find('.dropdown-menu').first().removeClass('show');
-  });  
+
+$(function () {
+  $('.dropdown:not(.nav-item)').hover(function () {
+    $(this).children('.dropdown-menu').addClass('dropdown-menu-align-right');
+  }, function () {
+    $(this).children('.dropdown-menu').removeClass('dropdown-menu-align-right');
+  });
+  $(function () {
+    $('.dropdown').hover(function () {
+      $(this).children('.dropdown-menu').addClass('show');
+    }, function () {
+      $(this).children('.dropdown-menu').removeClass('show');
+    });
+  });
 });
 
-
-
-// cards
-
-// Sample faculty details array
-const facultyDetails = [
-  { name: "John Doe", department: "Computer Science", designation: "Professor" },
-  { name: "Jane Smith", department: "Electrical Engineering", designation: "Associate Professor" },
-  // Add more faculty details as needed
-];
-
-// Function to create a card for each faculty detail
-function createFacultyCards() {
-  const facultyContainer = document.getElementById("facultyContainer");
-
-  // Clear existing content
-  facultyContainer.innerHTML = "";
-
-  // Create card for each faculty detail
-  facultyDetails.forEach(faculty => {
-      const card = document.createElement("div");
-      card.classList.add("card");
-
-      // Add faculty details to the card
-      card.innerHTML = `
-          <h3>${faculty.name}</h3>
-          <p>Department: ${faculty.department}</p>
-          <p>Designation: ${faculty.designation}</p>
-      `;
-
-      // Append card to the container
-      facultyContainer.appendChild(card);
+const mediaQuery2 = window.matchMedia('(max-width: 770px)');
+if (mediaQuery2.matches) {
+  $(function () {
+    $('.dropdown > a').click(function (e) {
+      e.preventDefault();
+      const dropdownMenu = $(this).siblings('.dropdown-menu');
+      $(this).parent().siblings().find('.dropdown-menu').hide();
+      dropdownMenu.toggle();
+    });
+    $(document).click(function (e) {
+      const target = $(e.target);
+      if (!target.closest('.dropdown').length) {
+        $('.dropdown-menu').hide();
+      }
+    });
   });
 }
 
-// Call the function to create the cards
-createFacultyCards();
+$(document).ready(function () {
+  $(".dashboard-nav-icon").click(function () {
+    $(".faculty_menu").toggle();
+  });
+});
