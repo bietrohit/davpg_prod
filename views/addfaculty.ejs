@@ -1,15 +1,14 @@
 <%- include('./partials/admin_header') -%>
 
-<style>
+  <style>
+    input {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto;
+    }
 
-
-input {
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     margin: 0 auto;
-   }
-/* 
+    /* 
 label {
      display: flex;
      align-items: center;
@@ -17,13 +16,14 @@ label {
      margin: 0 auto;
    } */
 
-select {
-     margin-bottom: 10px;
-     margin-top: 10px;
-     display: block;
-     /* flex-direction: row; */
-   }
-   /* end of dept */
+    select {
+      margin-bottom: 10px;
+      margin-top: 10px;
+      display: block;
+      /* flex-direction: row; */
+    }
+
+    /* end of dept */
     /* Container for the form */
     .containerform {
       display: flex;
@@ -32,8 +32,8 @@ select {
       height: 70vh;
       background-color: #f2f2f2;
     }
-    
-    
+
+
     /* Form container */
     .form-container {
       /* background-color: #995353; */
@@ -45,32 +45,36 @@ select {
       /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
       /* transition: box-shadow 0.3s; */
     }
-    
+
     /* Hover effect on form container */
     /* .form-container:hover {
       box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
     } */
-    
+
     /* Input fields */
-    input[type=text], input[type=password] {
+    input[type=text],
+    input[type=password] {
       width: 100%;
       padding: 12px;
       margin: 8px 0;
       display: inline-block;
       border: 1px solid #ccc;
-      border-radius: 5px; 
+      border-radius: 5px;
       box-sizing: border-box;
     }
-    .option-menu{
+
+    .option-menu {
       display: flex;
-      justify-content:space-between
+      justify-content: space-between
     }
-    .dpt{
+
+    .dpt {
       display: flex;
 
 
       flex-direction: column;
     }
+
     /* Submit button */
     .submit-btn {
       background-color: #4CAF50;
@@ -83,65 +87,77 @@ select {
       width: 100%;
       transition: background-color 0.3s;
     }
-    
+
     /* Hover effect on submit button */
     .submit-btn:hover {
       background-color: #45a049;
     }
-    
+
     /* Heading */
     .heading11 {
       text-align: center;
       justify-content: center;
       margin-bottom: 20px;
-        font-weight: 700;
+      font-weight: 700;
     }
-    </style>
-    </head>
-    <body>
-    
-      <div class="containerform">
+  </style>
+  </head>
+
+  <body>
+
+    <div class="containerform">
       <%- include('./partials/admin_menu') -%>
-      <div class="form-container">
-        <h1 class="heading11">Add Faculty</h1>
-        <form action="/addfaculty" method="post">
-      
-          <label for="name"><b>Name</b></label>
-          <input type="text" placeholder="Enter Name" name="name" required>
-          <label for="email"><b>Username</b></label>
-          <input type="text" placeholder="Enter Username" name="email" required>
-          <label for="psw"><b>Password</b></label>
-          <input type="password" placeholder="Enter Password" name="psw" required>
-         <div class="option-menu"> <div><div> <label for="Department" style="font-weight: 600;">Department</label></div>
-            <div>
-              <select name="dept" id="dept">
-              <option value="arts">Arts</option>
-              <option value="commerce">Commerce</option>
-              <option value="education">Education</option>
-              <option value="science">Science</option>
+        <div class="form-container">
+          <h1 class="heading11">Add Faculty</h1>
+          <form action="/addfaculty" method="post">
+
+            <label for="name"><b>Name</b></label>
+            <input type="text" placeholder="Enter Name" name="name" required>
+            <label for="email"><b>Username</b></label>
+            <input type="text" placeholder="Enter Username" name="email" required>
+            <label for="psw"><b>Password</b></label>
+            <input type="password" placeholder="Enter Password" name="psw" required>
+            <div class="option-menu">
+              <div>
+                <div> <label for="Department" style="font-weight: 600;">Department</label></div>
+                <div>
+                  <select name="dept" id="dept">
+                    <option value="arts">Arts</option>
+                    <option value="commerce">Commerce</option>
+                    <option value="education">Education</option>
+                    <option value="science">Science</option>
+                </div>
+
+                </select>
+              </div>
             </div>
-            
+            <div>
+              <div> <label for="userType" style="font-weight: 600;">Type of User</label></div>
+              <select name="userType" id="userType">
+                <option value="admin">Admin</option>
+                <option value="faculty">Faculty</option>
+              <option value="departmentAdmin">Department Admin</option>
+              
             </select>
-          </div>
           </div>
             <!-- <input type="submit" value="Submit" /> -->
-           <div>
-            <label for="designation" style="font-weight: 600;">Designation</label>
-            <select name="designation" id="designation">
-              <option value="proffesor">Proffesor</option>
-              <option value="assitant proffesor">Assitant Proffesor</option>
-              <option value="associate proffesor">Associate Proffesor</option>
-            </select>
-          </div>
-          </div>
-    
-          <button type="submit" class="submit-btn">Submit</button>
+            <div>
+              <label for="designation" style="font-weight: 600;">Designation</label>
+              <select name="designation" id="designation">
+                <option value="proffesor">Proffesor</option>
+                <option value="assitant proffesor">Assitant Proffesor</option>
+                <option value="associate proffesor">Associate Proffesor</option>
+              </select>
+            </div>
+        </div>
+
+        <button type="submit" class="submit-btn">Submit</button>
         </form>
-      </div>
     </div>
-    </body>
+    </div>
+  </body>
 
-    
-<%- include('./partials/footer') -%>
-</html>
 
+  <%- include('./partials/footer') -%>
+
+    </html>

@@ -292,7 +292,7 @@ app.post('/addfaculty', (req, res) => {
   const psw = req.body.psw;
   const department = req.body.dept;
   const designation = req.body.designation;
-  const userType = 'Faculty';
+  const userType = req.body.userType;
 
   // Insert data into the user table
   const insertUserQuery = 'INSERT INTO davpg.user (Id, Pass, UserType) VALUES (?, ?, ?)';
